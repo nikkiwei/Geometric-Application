@@ -1,3 +1,4 @@
 Hello World
-From:Younghoo Cho
-From:Cordelia Jones
+From:Younghoo Cho;
+From:Cordelia Jones;
+From Emily Kellogg;
