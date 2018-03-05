@@ -1,3 +1,6 @@
+<<<<<<< HEAD
 Hello World
 
-From Emily Kellogg 
+From Emily Kellogg;
+From:Younghoo Cho;
+
