@@ -35,6 +35,9 @@ public class DrawWindow extends JComponent implements ActionListener{
 	//Since it is a frame it extends JComponents and has general listeners
 	//that apply to the windows functionality
 	
+	//Instance of the database - TO BE EDITTED
+	private DB db = new DB();
+	
 	//Frame for the application that is divided in 5 parts
 	private JFrame frame; 
 	
@@ -86,7 +89,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	//PART 3: MIDDLE CANVAS AREA
 	
 	//This is temporary the name of the canvas object
-	private DrawLineAndPoint canvasGUI = new DrawLineAndPoint();
+	private DrawLineAndPoint canvasGUI = new DrawLineAndPoint(db);
 	
 	
 	
@@ -162,7 +165,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 873, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+			
 		//adds the different JComponents in the frame
 		frame.setJMenuBar(menuBar);
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
