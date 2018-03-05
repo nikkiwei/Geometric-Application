@@ -5,11 +5,13 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -18,6 +20,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  * This class is build to contain all the necessary components 
@@ -153,6 +156,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	 * Create the application.
 	 */
 	public DrawWindow() {
+		super();
 		initialize();
 	}
 
@@ -272,10 +276,12 @@ public class DrawWindow extends JComponent implements ActionListener{
 		}
 
 	/**
-	 * This class has been generated for the distribution of the listeners of the buttons.
-	 * It does not hold the functions itself but it is rather responsible for updating the window 
-	 * once the functions from the ButtonController class have been completed upon the 
-	 * selection of a specific button.
+	 * This method has been generated for the distribution of the listeners of the buttons.
+	 * It is responsible for updating the window and allowing functions for the listers of the buttons 
+	 * It calls methods holding the functions according to what button was pressed.
+	 * 
+	 * Supplemented Kiera McCabe's idea of poping message warning window
+	 * ALL BUTTONS HAVE THE SAME FUNCTION - TO BE EDITTED
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -283,47 +289,130 @@ public class DrawWindow extends JComponent implements ActionListener{
 		//Finds the source - the button that has been clicked
 		Object source = event.getSource();
 		
+		//Text message in the popped window
+		String buttonPressed;
+		
 		//**THIS IS AN EXAMPLE**
 		// the code for now will identify the buttons clicked and write on the console the name + "was clicked."
 		if(source == saveButton){
-			System.out.println("save was clicked.");}
+			System.out.println("save was clicked.");
+			buttonPressed="Save button";
+			setWarningMsg(buttonPressed);}
 		else if(source == cutButton){
-			System.out.println("cut was clicked.");}
+			System.out.println("cut was clicked.");
+			buttonPressed="Cut button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == copyButton){
-			System.out.println("copy was clicked.");}
+			System.out.println("copy was clicked.");
+			buttonPressed="Copy button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == pasteButton){
-			System.out.println("paste was clicked.");}
+			System.out.println("paste was clicked.");
+			buttonPressed="Paste button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == redoButton){
-			System.out.println("redo was clicked.");}
+			System.out.println("redo was clicked.");
+			buttonPressed="Redo button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == undoButton){
-			System.out.println("undo was clicked.");}
+			System.out.println("undo was clicked.");
+			buttonPressed="Undos button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == thicknessButton){
-			System.out.println("highlight was clicked.");}
+			System.out.println("highlight was clicked.");
+			buttonPressed="Thickness button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == wordsButton){
-			System.out.println("letter was clicked.");}
+			System.out.println("letter was clicked.");
+			buttonPressed="Words button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == playButton){
-			System.out.println("play was clicked.");}
+			System.out.println("play was clicked.");
+			buttonPressed="Play button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == newFile){
-			System.out.println("file was clicked.");}
+			System.out.println("file was clicked.");
+			buttonPressed="New File button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == revTriangle){
-			System.out.println("reverse triangle was clicked.");}
+			System.out.println("reverse triangle was clicked.");
+			buttonPressed="Reversebutton";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == triangle){
-			System.out.println("triangle was clicked.");}
+			System.out.println("triangle was clicked.");
+			buttonPressed="Triangle button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == circle){
-			System.out.println("circle was clicked.");}
+			System.out.println("circle was clicked.");
+			buttonPressed="Circle button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == lineUp){
-			System.out.println("line up was clicked.");}
+			System.out.println("line up was clicked.");
+			buttonPressed="Line up button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == lineRight){
-			System.out.println("line right was clicked.");}
+			System.out.println("line right was clicked.");
+			buttonPressed="line right button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == squares){
-			System.out.println("squares was clicked.");}
+			System.out.println("squares was clicked.");
+			buttonPressed="Squares button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == lineLeft){
-			System.out.println("line left was clicked.");}
+			System.out.println("line left was clicked.");
+			buttonPressed="line left button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == makeBigger){
-			System.out.println("make bigger was clicked.");}
+			System.out.println("make bigger was clicked.");
+			buttonPressed="make bigger button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
 		else if(source == makeSmaller){
-			System.out.println("make small was clicked.");}
+			System.out.println("make small was clicked.");
+			buttonPressed="make small button";
+			setWarningMsg(buttonPressed);
+			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+		}
+	
+	/**
+	 * This method allows the function of a button.
+	 * It pops up a new window in the middle of the screen with a warning message and an option to click okay.
+	 * If okay button is pressed or the window is terminated (click on the x symbol on the top of the tool bar)
+	 * another window will pop up with instructions and allowing the user to enter information.
+	 * 
+	 * @author Kiera McCabe
+	 * @author of comments Ioanna Deni
+	 * @param text message to be displayed
+	 */
+	public static void setWarningMsg(String text){
 		
-		
+		//This gets the defaults of the location and path of events of the pop up window 
+	    Toolkit.getDefaultToolkit().beep();
+	    
+	    //This allow the instructions displayed to be equal to our parameter 
+	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
+	    
+	    //This sets the title of the window
+	    JDialog dialog = optionPane.createDialog("Warning!");
+	    
+	    //Sets the whole pop up window visible
+	    dialog.setAlwaysOnTop(true);
+	    dialog.setVisible(true);
 	}
 }

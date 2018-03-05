@@ -9,6 +9,8 @@ import java.awt.event.MouseListener;
 /**
  * 
  * @author Jaemarie Solyst
+ * @contributor Ioanna Deni
+ * 
  * This small application can draw a line and a point when the user drags (for a line)
  * and clicks (for a point).
  *
@@ -24,18 +26,21 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 	// boolean to keep track of if the user has already clicked
 	private boolean released = false;
 	
-	//ADDED BY IOANNA DENI
+	//These two instances allow the storing of the database
+	//added 3/5/2018 by Ioanna Deni
 	private DB database;
-	private int counter;
 
 	/**
 	 * Constructor adds the mouseListner so that the mouseEvents 
 	 * will go through.
 	 */
-	public DrawLineAndPoint(DB database) {
-		this.database = database;
+	public DrawLineAndPoint(DB database) {		
 		addMouseListener(this);
 		this.setBackground(Color.WHITE);
+		
+		//allow the parameter to match the instance object in the class
+		//added 3/5/2018 by Ioanna Deni
+		this.database = database;
 	}
 	
 	/**
@@ -44,18 +49,31 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 	 * @param g takes in graphics
 	 */
 	public void paint(Graphics g) {
-		//ADDED BY IOANNA DENI - original by LOUIS CONOVOR
+		//method modified by demo provided by Louis Conover 
+		//added 3/5/2018 by Ioanna Deni
 		super.paint(g);
 	
 		if (released==true) {
 			System.out.println("in paint");
 			
 			for (int i=0; i<database.Size(); i=i+2){
+				//for all the points saved in data base
+				
+				//for every two points get the first
 				Point p1 = database.Get(i);
+				
+				//draw a little circle - method introduced by professor Louis Conover
 				g.fillOval(p1.x - 2, p1.y - 2, 5, 5);
+				
+				//get the second point 
 				Point p2 = database.Get(i+1);
+				
+				//draw another little circle and a line connecting the two - methods introduced by professor Louis Conover
 				g.fillOval(p2.x - 2, p2.y - 2, 5, 5);
 				g.drawLine(p1.x, p1.y, p2.x, p2.y);
+				
+				//if we were to draw every point (instead of every two points)
+				//then all lines would end up being connected!! We might need to use that functionality for shapes later
 			}
 		}
 	}
@@ -69,11 +87,9 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 		pressX = e.getX();
 		pressY = e.getY();
 		
-		
-		//ADDED BY IOANNA DENI
-		Point newPoint = new Point(pressX,pressY);
-		database.Add(newPoint);
-		counter=counter+1;
+		//Add the new point with x,y coordinates to the database and increase the counter
+		//added 3/5/2018 by Ioanna Deni
+		database.Add(new Point(pressX,pressY));
 	}
 
 	/** saves X and Y values where the mouse is released
@@ -85,9 +101,10 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 		releaseX = e.getX();
 		releaseY = e.getY();
 		
-		//ADDED BY IOANNA DENI
+		//Add the new point with x,y coordinates to the database and increase the counter
+		//added 3/5/2018 by Ioanna Deni
 		database.Add(new Point(releaseX,releaseY));
-		counter =counter+1;
+		
 
 		// set boolean to true so that it may draw a line (and not draw anything prior to this)
 		released = true;
