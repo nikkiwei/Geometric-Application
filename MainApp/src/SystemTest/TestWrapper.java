@@ -26,7 +26,7 @@ public class TestWrapper {
 		if(System.getProperty("os.name").contains("Windows")) {
 			OS = "SystemTestImages/windows/";
 		}else {
-			OS = "SystemTestImages/mac";
+			OS = "SystemTestImages/mac/";
 		}
 	}
 	
