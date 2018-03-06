@@ -5,3 +5,11 @@ From Lou Conover
 From: Cordelia Jones;
 From: Sage Mahannah;
 From: INSERT YOUR NAME HERE;
+
+Steps:
+1. Write name here.
+2. MainApp->Team->Commit...
+3. Save file.
+4. Moved class from Unstaged Changes to Staged Changes (if not already there)
+5. Add commit message (name and quick description)
+6. Commit And Push...
