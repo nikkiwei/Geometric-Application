@@ -32,6 +32,7 @@ public class TestWrapper {
 	
 	/**
 	 * Selects the icon of the Geometry App from the taskbar
+	 * Note: the Application should be running already
 	 */
 	public static void selectApp() {
 		try {
