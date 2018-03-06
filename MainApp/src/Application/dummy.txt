@@ -1,0 +1,17 @@
+Hello World
+From Emily Kellogg;
+From:Younghoo Cho;
+From Lou Conover
+From: Cordelia Jones;
+From: Sage Mahannah;
+From: INSERT YOUR NAME HERE;
+
+
+Steps:
+1. Write name here.
+2. MainApp(right click)->Team->Commit...
+3. Save file.
+4. Drag class from Unstaged Changes to Staged Changes (if not already there)
+5. Add commit message (your name and quick description)
+6. Commit And Push...
+7. Pull to see if it works.

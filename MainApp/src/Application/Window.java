@@ -38,7 +38,7 @@ import javax.swing.JMenuItem;
 
 public class Window  extends JComponent implements ActionListener{
 	
-	private DrawLineAndPoint drawingLine = new DrawLineAndPoint();
+	private DrawLineAndPoint drawingLine = new DrawLineAndPoint(null);
 	private JFrame frame; //Frame for the application
 	private final JPanel panel = new JPanel(); //Panel for the window
 	private final JLabel lblColorPalet = new JLabel("Canvas 1");
