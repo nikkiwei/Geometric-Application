@@ -40,6 +40,7 @@ public class GeometryPack {
 	 * @param height - height of the triangle
 	 * @param hypotenuse - side adjacent to the angle
 	 * @return angle in radians 
+	 * @author Mashka 
 	 */
 	public double angleTriangle(double height, double hypotenuse)
 	{
@@ -52,8 +53,8 @@ public class GeometryPack {
 	 * @param a coordinates of point a
 	 * @param b coordinates of point b
 	 * @param c coordinates of point c
-	 * 
 	 * @return height of the triangle 
+	 * @author Mashka 
 	 */
 	public double heightTriangle(Point a, Point b, Point c) {
 
@@ -83,6 +84,7 @@ public class GeometryPack {
 		 * @param a coordinates of point a
 		 * @param b coordinates of point b
 		 * @return length of line
+		 * @author Mashka 
 		 */
 		public int lineLength( Point a, Point b)
 		{
@@ -128,6 +130,7 @@ public class GeometryPack {
 		 * @param b coordinates of point b
 		 * @param c coordinates of point c
 		 * @return coordinates of point d
+		 * @author Mashka 
 		 */
 		public Point pGram(Point a, Point b, Point c){
 			double alpha = angleToX(a,b);
@@ -139,6 +142,7 @@ public class GeometryPack {
 		 * @param a Point start point of the line
 		 * @param b Point end point of the line
 		 * @return the angle between X axis and a line
+		 * @author Mashka 
 		 */
 		public double angleToX(Point a, Point b)
 		{
