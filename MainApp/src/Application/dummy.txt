@@ -8,6 +8,7 @@ From: Masha Lifshits
 From: Ye Won Hong;
 From: Juhi Shah;
 
+
 Steps:
 1. Write name here.
 2. MainApp(right click)->Team->Commit...
