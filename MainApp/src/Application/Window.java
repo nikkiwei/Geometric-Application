@@ -36,7 +36,7 @@ import javax.swing.JMenuItem;
  *
  */
 
-public class Window extends JComponent implements ActionListener{
+public class Window  extends JComponent implements ActionListener{
 	
 	private DrawLineAndPoint drawingLine = new DrawLineAndPoint();
 	private JFrame frame; //Frame for the application
