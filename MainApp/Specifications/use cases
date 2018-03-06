@@ -1,0 +1,49 @@
+
+draw/spec a line
+1. Users press the button “Draw” to start 
+2. Users drag the mouse from start point and end at the end point with highlighting  points.
+     (Green: startpoint.  Blue: end point)
+ 3.Users double click the line and look at the right side “ data section” to know the length,  start points and end points coordinates of the line. 
+4.When users move the mouse tip to the vertices, they will also get the coordinates of the point and the number of the lines connected to that point.
+
+
+
+replicate line at angle at point
+When we have a line present, user can select “replicate” mode. Click on one point to indicate the center of rotation, then drag the other point around it. When the mouse is released, form the new line.
+
+
+flip angle to make rhombus
+User clicks “make a rhombus” and selects “enter data” selection, enters angle and length of one side of rhombus. Then software draws the rhombus in the middle of the screen.
+
+connect vertices
+User clicks “Connect Vertices” button, and all vertices of a rhombus will be connected. Since a rhombus have 4 vertices, it has two diagonal lines. User can choose one rhombus by clicking on the rhombus. After choosing one rhombus, two diagonal lines should appear and all vertices could be connected.
+
+
+zoom
+There are three separate buttons to control the full page zoom on the lower right corner of the screen. User can click on any of them to zoom in (“+” sign), zoom out (“-” sign), and reset.
+
+
+6. deform diagram to fit linear spec on a single element
+
+7.extract arbitrary segments as a polygon
+            1.Click “draw polygon mode” and type in the numbers of the segments and select the segment we want to start with.
+            2.After choosing arbitrary segments, drag the mouse on the segments and release when we get the ideal position.
+
+8.replicate polygon around segment or pair of vertices
+	1. Click “replicate polygon” mode, and select the two vertices that user wants to base on. Then polygon will be replicated automatically.
+
+9. extend side/pair of points - snap extension to a point
+1.     Press Shift and use mouse to select the sides that you want to extend. Right click and select “connect sides”
+2.    
+
+
+10. Rotate objects 
+To rotate an object by a certain angle
+Select one object by clicking on it 
+Press the “rotate” button, and a window containing an Angle text box will be shown on the screen.
+Enter the rotation angle in the Angle text box. Enter a negative angle to rotate the object left; enter a positive angle to rotate the object right.
+After entering the angle, press “rotate object” button on the window to rotate the object. 
+
+
+
+
