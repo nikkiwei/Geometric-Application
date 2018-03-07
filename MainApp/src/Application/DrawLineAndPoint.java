@@ -33,8 +33,8 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 	// Takes x and y values from press and release methods
 	private Point[] lineArray = new Point[2];
 	
-	/** ints to keep track of X and Y values of where the user has pressed and
-	released clicks */
+	// ints to keep track of X and Y values of where the user has pressed and
+	// released clicks
 	private int pressX;
 	private int pressY;
 	private int releaseX;
@@ -80,7 +80,14 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 		//Checks if released boolean is true
 		//added 3/6/18 by Jaemarie Solyst
 		if (released==true) {
-					
+			
+			//ADDED BY SNEHA KANAUJIA
+			//Checks if drag boolean is true and then draws the line from start point to current mouse location point saved in release x and y variables
+			if (drag==true){
+				g.drawLine(pressX, pressY, releaseX, releaseY);
+			}
+			
+			//Added by Jaemarie Solyst
 			//for all the point arrays (that will be drawn into shapes) saved in data base
 			for (int i=0; i<database.Size(); i++){
 				Point[] shapeArray = database.Get(i); 
@@ -94,12 +101,6 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 						
 				// LINE: length of the array is 2
 				else if (shapeArray.length == 2 ) {
-					
-					//ADDED BY SNEHA KANAUJIA
-					//Checks if drag boolean is true and then draws the line from start point to current mouse location point saved in release x and y variables
-					if (drag==true){
-						g.drawLine(pressX, pressY, releaseX, releaseY);
-					}
 							
 					//Save the two line end points from the array
 					Point p1 = shapeArray[0];
@@ -126,6 +127,8 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 		// saves the current mouse position values
 		pressX=e.getX();
 		pressY=e.getY();
+		
+		drag=true;
 		
 	}
 
@@ -169,7 +172,6 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 		// Add the array to the database and update the canvas
 		database.Add(pointArray);
 		repaint();
-		
 	}
 	
 	/**
@@ -198,7 +200,7 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+
 		// saves the current mouse position values while the mouse is still pressed/dragging to the class-wide release X and Y variables
 		releaseX = e.getX();
 		releaseY = e.getY();
