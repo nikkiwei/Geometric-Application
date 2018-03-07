@@ -1,30 +1,48 @@
 package Application;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * 
  * @author Jaemarie Solyst
  * @contributor Ioanna Deni
+ * @contributor Sneha Kanaujia
  * 
  * This small application can draw a line and a point when the user drags (for a line)
  * and clicks (for a point).
  *
  */
-public class DrawLineAndPoint extends Canvas implements MouseListener {
-	/* ints to keep track of X and Y values of where the user has pressed and
+public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMotionListener {
+	
+	/**
+	 * The size of a point when the mouse is clicked
+	 */
+	private static final int POINT_SIZE = 10;
+	
+	/**
+	 * The size of points on the ends of lines
+	 */
+	private static final int ENDPOINT_SIZE = 5;
+	
+	// Takes x and y values from press and release methods
+	private Point[] lineArray = new Point[2];
+	
+	/** ints to keep track of X and Y values of where the user has pressed and
 	released clicks */
 	private int pressX;
 	private int pressY;
 	private int releaseX;
 	private int releaseY;
 	
-	// boolean to keep track of if the user has already clicked
+	// boolean to keep track of if the user has already clicked, or dragged
 	private boolean released = false;
+	private boolean drag = false;
 	
 	//These two instances allow the storing of the database
 	//added 3/5/2018 by Ioanna Deni
@@ -35,7 +53,12 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 	 * will go through.
 	 */
 	public DrawLineAndPoint(DB database) {		
+		
+		//Adds MouseListener and MouseMotionListener to the canvas
 		addMouseListener(this);
+		addMouseMotionListener(this);
+		
+		//Sets the canvas color to white
 		this.setBackground(Color.WHITE);
 		
 		//allow the parameter to match the instance object in the class
@@ -52,71 +75,100 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 		//method modified by demo provided by Louis Conover 
 		//added 3/5/2018 by Ioanna Deni
 		super.paint(g);
+		
 	
+		//Checks if released boolean is true
+		//added 3/6/18 by Jaemarie Solyst
 		if (released==true) {
-			System.out.println("in paint");
-			
-			for (int i=0; i<database.Size(); i=i+2){
-				//for all the points saved in data base
-				
-				//for every two points get the first
-				Point p1 = database.Get(i);
-				
-				//draw a little circle - method introduced by professor Louis Conover
-				g.fillOval(p1.x - 2, p1.y - 2, 5, 5);
-				
-				//get the second point 
-				Point p2 = database.Get(i+1);
-				
-				//draw another little circle and a line connecting the two - methods introduced by professor Louis Conover
-				g.fillOval(p2.x - 2, p2.y - 2, 5, 5);
-				g.drawLine(p1.x, p1.y, p2.x, p2.y);
-				
-				//if we were to draw every point (instead of every two points)
-				//then all lines would end up being connected!! We might need to use that functionality for shapes later
+					
+			//for all the point arrays (that will be drawn into shapes) saved in data base
+			for (int i=0; i<database.Size(); i++){
+				Point[] shapeArray = database.Get(i); 
+						
+				// POINT: length of the array is 1
+				if (shapeArray.length == 1) {
+							
+					Point p =  shapeArray[0];
+					g.fillOval(p.x - (int)(POINT_SIZE/2), p.y - (int)(POINT_SIZE/2), POINT_SIZE, POINT_SIZE);
+				}
+						
+				// LINE: length of the array is 2
+				else if (shapeArray.length == 2 ) {
+					
+					//ADDED BY SNEHA KANAUJIA
+					//Checks if drag boolean is true and then draws the line from start point to current mouse location point saved in release x and y variables
+					if (drag==true){
+						g.drawLine(pressX, pressY, releaseX, releaseY);
+					}
+							
+					//Save the two line end points from the array
+					Point p1 = shapeArray[0];
+					Point p2 = shapeArray[1];
+							
+					//Draw the line with two ovals on the end points
+					g.fillOval(p1.x - (int)(ENDPOINT_SIZE/2), p1.y - (int)(ENDPOINT_SIZE/2), ENDPOINT_SIZE, ENDPOINT_SIZE);
+					g.fillOval(p2.x - (int)(ENDPOINT_SIZE/2), p2.y - (int)(ENDPOINT_SIZE/2), ENDPOINT_SIZE, ENDPOINT_SIZE);
+					g.drawLine(p1.x, p1.y, p2.x, p2.y);
+				}
 			}
 		}
 	}
 	
 	/** saves X and Y values where the mouse is initially pressed
 	 * @param e mouse event passed in to record location of press
+	 * written 3/6/2018 by Jaemarie Solyst
 	 */
 	public void mousePressed(MouseEvent e) {
 		// save press X and Y values
-		System.out.println("in press");
-		pressX = e.getX();
-		pressY = e.getY();
+		//Add the first point of a line to the array
+		lineArray[0] = new Point(e.getX(),e.getY());
 		
-		//Add the new point with x,y coordinates to the database and increase the counter
-		//added 3/5/2018 by Ioanna Deni
-		database.Add(new Point(pressX,pressY));
+		// saves the current mouse position values
+		pressX=e.getX();
+		pressY=e.getY();
+		
 	}
 
 	/** saves X and Y values where the mouse is released
 	 * @param e mouse event passed in to record location of release
+	 * written 3/6/18 by Jaemarie Solyst
 	 */
 	public void mouseReleased(MouseEvent e) {
+		
 		// save release X and Y values
-		System.out.println("in release");
-		releaseX = e.getX();
-		releaseY = e.getY();
-		
-		//Add the new point with x,y coordinates to the database and increase the counter
-		//added 3/5/2018 by Ioanna Deni
-		database.Add(new Point(releaseX,releaseY));
-		
-
+		lineArray[1] = new Point(e.getX(), e.getY());
+					
+		//only add to data if the user clicked in the same place (this is not a press and release, it is a click)
+		if (!(lineArray[0].equals(lineArray[1]))) {
+					
+		// add a clone of the array to avoid null pointer when lineArray is reset
+		database.Add(lineArray.clone());
+	}
+		//reset the lineArray
+		lineArray[0] = null;
+		lineArray[1] = null;
+				
 		// set boolean to true so that it may draw a line (and not draw anything prior to this)
 		released = true;
+		drag = false;
 		repaint();
 	}
 	
 	/**
-	 * imported for MouseListener
+	 * When the mouse is just clicked, add a Point array of length 1 to the database for a single point.
+	 * added 3/6/18 Jaemarie Solyst
+	 * @param e mouse event passed in to record location of release
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		// Create a point array of length 1 to save the point
+		Point[] pointArray = new Point[1];
+		pointArray[0] = new Point(e.getX(), e.getY());
+				
+		// Add the array to the database and update the canvas
+		database.Add(pointArray);
+		repaint();
 		
 	}
 	
@@ -136,5 +188,34 @@ public class DrawLineAndPoint extends Canvas implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/**
+	 * ADDED BY SNEHA KANAUJIA
+	 * imported for MouseMotionListener
+	 * Detects when user is dragging from a point
+	 * Intended to show the user the line/object they are creating as they draw
+	 */
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		// saves the current mouse position values while the mouse is still pressed/dragging to the class-wide release X and Y variables
+		releaseX = e.getX();
+		releaseY = e.getY();
+
+		//set boolean to true so that in paint it may draw a line from the start point to "end" point/current mouse location
+		drag = true;
+		released = true;
+		repaint();
+		
+	}
+
+	/**
+	 * imported for MouseMotionListener
+	 */
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
