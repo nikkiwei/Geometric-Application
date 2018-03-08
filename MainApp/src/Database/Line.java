@@ -1,4 +1,5 @@
-package Application;
+package Database;
+
 /**
  * A line geometric object
  * 

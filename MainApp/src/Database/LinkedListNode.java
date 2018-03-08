@@ -1,4 +1,4 @@
-package Application;
+package Database;
 /**
  * Class for the node of linked list
  * 

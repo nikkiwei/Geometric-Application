@@ -1,4 +1,4 @@
-package Application;
+package Database;
 /**
  * The GeoObject abstract class represents a geometric object that could be a point, a line, or a polygon
  * 

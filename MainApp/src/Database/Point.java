@@ -1,4 +1,5 @@
-package Application;
+package Database;
+
 /**
  * A point geometric object.
  * 

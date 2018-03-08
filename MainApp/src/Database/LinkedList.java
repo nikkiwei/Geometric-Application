@@ -1,4 +1,5 @@
-package Application;
+package Database;
+
 /**
  * Store all the methods that a linked list can implement
  * 
