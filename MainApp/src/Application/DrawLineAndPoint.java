@@ -7,12 +7,16 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.text.DecimalFormat;
 
 /**
  * 
  * @author Jaemarie Solyst
  * @contributor Ioanna Deni
  * @contributor Sneha Kanaujia
+ * @contributor Kiera McCabe
+ * 
+ * March 8, KM added DecimalFormat, coordinte getters, length arithmetic 
  * 
  * This small application can draw a line and a point when the user drags (for a line)
  * and clicks (for a point).
@@ -35,11 +39,9 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 	
 	// ints to keep track of X and Y values of where the user has pressed and
 	// released clicks
-	private int pressX;
-	private int pressY;
-	private int releaseX;
-	private int releaseY;
-	
+	private int xPress, yPress, xRelease, yRelease;
+	DecimalFormat df = new DecimalFormat("###.###");
+
 	// boolean to keep track of if the user has already clicked, or dragged
 	private boolean released = false;
 	private boolean drag = false;
@@ -84,7 +86,7 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 			//ADDED BY SNEHA KANAUJIA
 			//Checks if drag boolean is true and then draws the line from start point to current mouse location point saved in release x and y variables
 			if (drag==true){
-				g.drawLine(pressX, pressY, releaseX, releaseY);
+				g.drawLine(xPress, yPress, xRelease, yRelease);
 			}
 			
 			//Added by Jaemarie Solyst
@@ -125,8 +127,8 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 		lineArray[0] = new Point(e.getX(),e.getY());
 		
 		// saves the current mouse position values
-		pressX=e.getX();
-		pressY=e.getY();
+		xPress=e.getX();
+		yPress=e.getY();
 		
 		drag=true;
 		
@@ -137,7 +139,18 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 	 * written 3/6/18 by Jaemarie Solyst
 	 */
 	public void mouseReleased(MouseEvent e) {
-		
+		// save release X and Y values
+				xRelease = e.getX();
+				yRelease = e.getY();
+				System.out.println("mouse released at (" + xRelease + ", " + yRelease
+						+ ")");
+
+				// length of the trunk calculated using pythagorean
+				double xDifference2 = (xRelease - xPress) ^ 2;
+				double yDifference2 = (yRelease - yPress) ^ 2;
+				double lineLength = (Math.sqrt(Math.abs(xDifference2 + yDifference2)));
+				System.out.println("The length is " + df.format(lineLength));
+				
 		// save release X and Y values
 		lineArray[1] = new Point(e.getX(), e.getY());
 					
@@ -202,8 +215,8 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 	public void mouseDragged(MouseEvent e) {
 
 		// saves the current mouse position values while the mouse is still pressed/dragging to the class-wide release X and Y variables
-		releaseX = e.getX();
-		releaseY = e.getY();
+		xRelease = e.getX();
+		yRelease = e.getY();
 
 		//set boolean to true so that in paint it may draw a line from the start point to "end" point/current mouse location
 		drag = true;

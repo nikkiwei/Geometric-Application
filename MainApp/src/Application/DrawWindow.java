@@ -8,6 +8,8 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -41,6 +43,8 @@ public class DrawWindow extends JComponent implements ActionListener{
 	
 	//Instance of the database - TO BE EDITTED
 	private DB db = new DB();
+	DecimalFormat df = new DecimalFormat("###.###");
+	
 	
 	//Frame for the application that is divided in 5 parts
 	private JFrame frame; 
