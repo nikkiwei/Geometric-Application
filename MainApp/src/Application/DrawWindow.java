@@ -280,7 +280,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	 * It is responsible for updating the window and allowing functions for the listers of the buttons 
 	 * It calls methods holding the functions according to what button was pressed.
 	 * 
-	 * Supplemented Kiera McCabe's idea of poping message warning window
+	 * Supplemented Kiera McCabe's idea of popping message warning window
 	 * ALL BUTTONS HAVE THE SAME FUNCTION - TO BE EDITTED
 	 */
 	@Override
@@ -302,92 +302,110 @@ public class DrawWindow extends JComponent implements ActionListener{
 			System.out.println("cut was clicked.");
 			buttonPressed="Cut button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == copyButton){
 			System.out.println("copy was clicked.");
 			buttonPressed="Copy button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == pasteButton){
 			System.out.println("paste was clicked.");
 			buttonPressed="Paste button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == redoButton){
 			System.out.println("redo was clicked.");
 			buttonPressed="Redo button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == undoButton){
 			System.out.println("undo was clicked.");
 			buttonPressed="Undos button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == thicknessButton){
 			System.out.println("highlight was clicked.");
 			buttonPressed="Thickness button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == wordsButton){
 			System.out.println("letter was clicked.");
 			buttonPressed="Words button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == playButton){
 			System.out.println("play was clicked.");
 			buttonPressed="Play button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == newFile){
 			System.out.println("file was clicked.");
 			buttonPressed="New File button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == revTriangle){
 			System.out.println("reverse triangle was clicked.");
 			buttonPressed="Reversebutton";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == triangle){
 			System.out.println("triangle was clicked.");
 			buttonPressed="Triangle button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == circle){
 			System.out.println("circle was clicked.");
 			buttonPressed="Circle button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == lineUp){
 			System.out.println("line up was clicked.");
 			buttonPressed="Line up button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == lineRight){
 			System.out.println("line right was clicked.");
 			buttonPressed="line right button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == squares){
 			System.out.println("squares was clicked.");
 			buttonPressed="Squares button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == lineLeft){
 			System.out.println("line left was clicked.");
 			buttonPressed="line left button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == makeBigger){
 			System.out.println("make bigger was clicked.");
 			buttonPressed="make bigger button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		else if(source == makeSmaller){
 			System.out.println("make small was clicked.");
 			buttonPressed="make small button";
 			setWarningMsg(buttonPressed);
-			JOptionPane.showInputDialog(buttonPressed+"was pressed");}
+			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+			}
 		}
 	
 	/**
