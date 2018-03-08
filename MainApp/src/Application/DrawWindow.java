@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
  * This class contains no logic but rather builds the graphic design for the application. 
  * 
  * @author Ioanna Deni
+ * @contributor Kiera McCabe
  * @version Feb. 2018
  *
  */
@@ -277,7 +278,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 
 	/**
 	 * This method has been generated for the distribution of the listeners of the buttons.
-	 * It is responsible for updating the window and allowing functions for the listers of the buttons 
+	 * It is responsible for updating the window and allowing functions for the listeners of the buttons 
 	 * It calls methods holding the functions according to what button was pressed.
 	 * 
 	 * Supplemented Kiera McCabe's idea of popping message warning window
