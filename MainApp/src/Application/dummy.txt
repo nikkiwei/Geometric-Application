@@ -7,7 +7,8 @@ From: Sage Mahannah;
 From: Masha Lifshits
 From: Ye Won Hong;
 From: Juhi Shah;
-From:Haoran Zhang
+From: Haoran Zhang
+From: Cecilia Yang
 
 Steps:
 1. Write name here.
