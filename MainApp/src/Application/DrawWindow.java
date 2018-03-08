@@ -101,21 +101,21 @@ public class DrawWindow extends JComponent implements ActionListener{
 	
 	
 	
-	//PART 4: LEFT PANEL - SIDE BUTTONS 
-	
-	//This second toolBar hosts the side buttons of the window
-	private final JToolBar toolBar_1 = new JToolBar();
-	// The different buttons added have temporary names and no functionality 
-	// *THEY ARE EXAMPLES*
-	private final JButton revTriangle = new JButton("");
-	private final JButton triangle = new JButton("");
-	private final JButton squares = new JButton("");
-	private final JButton circle = new JButton("");
-	private final JButton lineRight = new JButton("");
-	private final JButton lineUp = new JButton("");
-	private final JButton lineLeft = new JButton("");
-	private final JButton makeBigger = new JButton("");
-	private final JButton makeSmaller = new JButton("");
+//	//PART 4: LEFT PANEL - SIDE BUTTONS 
+//	
+//	//This second toolBar hosts the side buttons of the window
+//	private final JToolBar toolBar_1 = new JToolBar();
+//	// The different buttons added have temporary names and no functionality 
+//	// *THEY ARE EXAMPLES*
+//	private final JButton revTriangle = new JButton("");
+//	private final JButton triangle = new JButton("");
+//	private final JButton squares = new JButton("");
+//	private final JButton circle = new JButton("");
+//	private final JButton lineRight = new JButton("");
+//	private final JButton lineUp = new JButton("");
+//	private final JButton lineLeft = new JButton("");
+//	private final JButton makeBigger = new JButton("");
+//	private final JButton makeSmaller = new JButton("");
 	
 	
 	
@@ -180,7 +180,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		frame.getContentPane().add(canvasGUI, BorderLayout.CENTER);
 		frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
-		frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+//		frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
 		
 		
 		//adds the buttons in the top menuBar   
@@ -240,39 +240,39 @@ public class DrawWindow extends JComponent implements ActionListener{
 		saveButton.addActionListener(this);
 		
 		
-		// adds the buttons to the secondary toolBar at the side of the window under the menuBar
-		toolBar_1.add(triangle);
-		toolBar_1.add(squares);
-		toolBar_1.add(revTriangle);
-		toolBar_1.add(circle);
-		toolBar_1.add(lineUp);
-		toolBar_1.add(lineRight);
-		toolBar_1.add(lineLeft);
-		toolBar_1.add(makeBigger);
-		toolBar_1.add(makeSmaller);
-		// This allows the toolBar to be vertical instead of horizontal
-		toolBar_1.setOrientation(SwingConstants.VERTICAL);
-		// These buttons have no displayed text only an icon provided by eclipse - see readme for more info
-		triangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortUp.png")));
-		revTriangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-		squares.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/control/skin/caspian/pattern-transparent.png")));
-		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
-		circle.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeLeaf.gif")));
-		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
-		lineUp.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/expanded.gif")));
-		lineLeft.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed.gif")));
-		makeBigger.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/maximize.gif")));
-		makeSmaller.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/iconify-pressed.gif")));
-		// and the buttons listeners - TO BE EDITED
-		triangle.addActionListener(this);
-		revTriangle.addActionListener(this);
-		squares.addActionListener(this);
-		circle.addActionListener(this);
-		lineRight.addActionListener(this);
-		lineUp.addActionListener(this);
-		lineLeft.addActionListener(this);
-		makeBigger.addActionListener(this);
-		makeSmaller.addActionListener(this);
+//		// adds the buttons to the secondary toolBar at the side of the window under the menuBar
+//		toolBar_1.add(triangle);
+//		toolBar_1.add(squares);
+//		toolBar_1.add(revTriangle);
+//		toolBar_1.add(circle);
+//		toolBar_1.add(lineUp);
+//		toolBar_1.add(lineRight);
+//		toolBar_1.add(lineLeft);
+//		toolBar_1.add(makeBigger);
+//		toolBar_1.add(makeSmaller);
+//		// This allows the toolBar to be vertical instead of horizontal
+//		toolBar_1.setOrientation(SwingConstants.VERTICAL);
+//		// These buttons have no displayed text only an icon provided by eclipse - see readme for more info
+//		triangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortUp.png")));
+//		revTriangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+//		squares.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/control/skin/caspian/pattern-transparent.png")));
+//		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
+//		circle.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeLeaf.gif")));
+//		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
+//		lineUp.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/expanded.gif")));
+//		lineLeft.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed.gif")));
+//		makeBigger.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/maximize.gif")));
+//		makeSmaller.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/iconify-pressed.gif")));
+//		// and the buttons listeners - TO BE EDITED
+//		triangle.addActionListener(this);
+//		revTriangle.addActionListener(this);
+//		squares.addActionListener(this);
+//		circle.addActionListener(this);
+//		lineRight.addActionListener(this);
+//		lineUp.addActionListener(this);
+//		lineLeft.addActionListener(this);
+//		makeBigger.addActionListener(this);
+//		makeSmaller.addActionListener(this);
 		
 		// We set the bottom label to be more user friendly 
 		bottomLabel.setFont(new Font("Tahoma", Font.ITALIC, 12));
@@ -357,60 +357,60 @@ public class DrawWindow extends JComponent implements ActionListener{
 			setWarningMsg(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
-		else if(source == revTriangle){
-			System.out.println("reverse triangle was clicked.");
-			buttonPressed="Reversebutton";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == triangle){
-			System.out.println("triangle was clicked.");
-			buttonPressed="Triangle button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == circle){
-			System.out.println("circle was clicked.");
-			buttonPressed="Circle button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == lineUp){
-			System.out.println("line up was clicked.");
-			buttonPressed="Line up button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == lineRight){
-			System.out.println("line right was clicked.");
-			buttonPressed="line right button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == squares){
-			System.out.println("squares was clicked.");
-			buttonPressed="Squares button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == lineLeft){
-			System.out.println("line left was clicked.");
-			buttonPressed="line left button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == makeBigger){
-			System.out.println("make bigger was clicked.");
-			buttonPressed="make bigger button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-		else if(source == makeSmaller){
-			System.out.println("make small was clicked.");
-			buttonPressed="make small button";
-			setWarningMsg(buttonPressed);
-			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+//		else if(source == revTriangle){
+//			System.out.println("reverse triangle was clicked.");
+//			buttonPressed="Reversebutton";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == triangle){
+//			System.out.println("triangle was clicked.");
+//			buttonPressed="Triangle button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == circle){
+//			System.out.println("circle was clicked.");
+//			buttonPressed="Circle button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == lineUp){
+//			System.out.println("line up was clicked.");
+//			buttonPressed="Line up button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == lineRight){
+//			System.out.println("line right was clicked.");
+//			buttonPressed="line right button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == squares){
+//			System.out.println("squares was clicked.");
+//			buttonPressed="Squares button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == lineLeft){
+//			System.out.println("line left was clicked.");
+//			buttonPressed="line left button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == makeBigger){
+//			System.out.println("make bigger was clicked.");
+//			buttonPressed="make bigger button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
+//		else if(source == makeSmaller){
+//			System.out.println("make small was clicked.");
+//			buttonPressed="make small button";
+//			setWarningMsg(buttonPressed);
+//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+//			}
 		}
 	
 	/**

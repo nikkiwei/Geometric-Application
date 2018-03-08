@@ -1,3 +1,4 @@
+package Application;
 /**
  * Store all the methods that a linked list can implement
  * 

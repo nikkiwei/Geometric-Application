@@ -9,6 +9,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.text.DecimalFormat;
 
+import javax.swing.JPanel;
+
 /**
  * 
  * @author Jaemarie Solyst
@@ -22,7 +24,7 @@ import java.text.DecimalFormat;
  * and clicks (for a point).
  *
  */
-public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMotionListener {
+public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMotionListener {
 	
 	/**
 	 * The size of a point when the mouse is clicked
