@@ -129,7 +129,7 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 		// saves the current mouse position values
 		xPress=e.getX();
 		yPress=e.getY();
-		
+		System.out.println("mouse pressed at (" + xPress + ", " + yPress+ ")");
 		drag=true;
 		
 	}
@@ -137,20 +137,20 @@ public class DrawLineAndPoint extends Canvas implements MouseListener, MouseMoti
 	/** saves X and Y values where the mouse is released
 	 * @param e mouse event passed in to record location of release
 	 * written 3/6/18 by Jaemarie Solyst
+	 * supplemented 3/8/18 by Kiera McCabe
 	 */
 	public void mouseReleased(MouseEvent e) {
 		// save release X and Y values
-				xRelease = e.getX();
-				yRelease = e.getY();
-				System.out.println("mouse released at (" + xRelease + ", " + yRelease
-						+ ")");
+		xRelease = e.getX();
+		yRelease = e.getY();
+		System.out.println("mouse released at (" + xRelease + ", " + yRelease	+ ")");
 
-				// length of the trunk calculated using pythagorean
-				double xDifference2 = (xRelease - xPress) ^ 2;
-				double yDifference2 = (yRelease - yPress) ^ 2;
-				double lineLength = (Math.sqrt(Math.abs(xDifference2 + yDifference2)));
-				System.out.println("The length is " + df.format(lineLength));
-				
+		// length of the line calculated using pythagorean
+		double xDifference2 = (xRelease - xPress) ^ 2;
+		double yDifference2 = (yRelease - yPress) ^ 2;
+		double lineLength = (Math.sqrt(Math.abs(xDifference2 + yDifference2)));
+		System.out.println("The length of the line is " + df.format(lineLength));
+
 		// save release X and Y values
 		lineArray[1] = new Point(e.getX(), e.getY());
 					
