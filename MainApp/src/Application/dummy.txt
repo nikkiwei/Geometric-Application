@@ -10,6 +10,7 @@ From: Juhi Shah;
 From: Haoran Zhang
 From: Cecilia Yang
 From: Jiehui Luo
+From: Deanna Thomas
 
 Steps:
 1. Write name here.
