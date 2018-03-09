@@ -1,4 +1,4 @@
-package Application;
+package GeometryPack;
 
 import java.awt.Graphics;
 import java.awt.Point;
