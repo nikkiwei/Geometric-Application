@@ -162,4 +162,37 @@ public class GeometryPack {
 
 	}
 
+/**
+* Replicate an angle given a point, line and angle
+* @param point
+* @param alpha
+* @param line_AB
+* @return line_AC
+* @author Nguyen Nguyen
+**/
+		private static Point angle_replication ( Point point_B, double alpha, Line2D line_ab ){
+
+		// Calculate length of AB 
+		double dx = line_ab.getX1() - line_ab.getX2();
+		double dy = line_ab.getY1() - line_ab.getY2();
+		double length = Math.sqrt(dx*dx + dy*dy);
+
+		// Compute the angle AB makes with the horizontal axis
+		double angle_AB = Math.atan(dx/dy);
+
+		
+		// Compute the difference between alpha and the angle AB makes with the horizontal axis (or basically, the angle BC makes with the horizontal axis)
+		double angle_BC = alpha - angle_AB;
+		
+		// Calculate coordinates of point C
+		double xC = point_B.getX() + length*Math.cos(angle_BC);
+		double yC = point_B.getY() - length*Math.sin(angle_BC);
+
+		// Construct point C
+		Point point_C = new Point((int) xC,(int) yC);
+
+		// Return point C
+		return point_C;
+
+		}
 
