@@ -2,12 +2,15 @@ package Application;
 
 //These imports have been initialized by Eclipse WindowBuilder 2018
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
@@ -37,7 +40,7 @@ import javax.swing.JOptionPane;
  *
  */
 
-public class DrawWindow extends JComponent implements ActionListener{
+public class DrawWindow extends JComponent implements ActionListener, KeyListener{
 	//Since it is a frame it extends JComponents and has general listeners
 	//that apply to the windows functionality
 	
@@ -47,7 +50,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	
 	
 	//Frame for the application that is divided in 5 parts
-	private JFrame frame; 
+	protected JFrame frame; 
 	
 	
 	
@@ -141,6 +144,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	 *
 	 */
 	public static void main(String[] args) {
+
 		// this is the main function necessary to run the application
 		EventQueue.invokeLater(new Runnable() {
 			// It runs - so we can add animations too 
@@ -153,7 +157,9 @@ public class DrawWindow extends JComponent implements ActionListener{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
+			
 		});
 	}
 
@@ -168,10 +174,15 @@ public class DrawWindow extends JComponent implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	protected void initialize() {
+		//Adds KeyListener to the canvas KM; may need MouseListener, MouseMotionListener
+		addKeyListener(this);
 		//Creates the frame for the application and sets its size and 
 		//closing procedure
 		frame = new JFrame();
+		//Set cursor
+		frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		
 		frame.setBounds(100, 100, 873, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
@@ -181,7 +192,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		frame.getContentPane().add(canvasGUI, BorderLayout.CENTER);
 		frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
 //		frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
-		
+
 		
 		//adds the buttons in the top menuBar   
 		menuBar.add(mnMenu);
@@ -286,6 +297,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	 * It calls methods holding the functions according to what button was pressed.
 	 * 
 	 * Supplemented Kiera McCabe's idea of popping message warning window
+	 * KM 3.16 Changed the type of popup
 	 * ALL BUTTONS HAVE THE SAME FUNCTION - TO BE EDITTED
 	 */
 	@Override
@@ -302,113 +314,114 @@ public class DrawWindow extends JComponent implements ActionListener{
 		if(source == saveButton){
 			System.out.println("save was clicked.");
 			buttonPressed="Save button";
-			setWarningMsg(buttonPressed);}
+			setPopup(buttonPressed);}
 		else if(source == cutButton){
 			System.out.println("cut was clicked.");
 			buttonPressed="Cut button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == copyButton){
 			System.out.println("copy was clicked.");
 			buttonPressed="Copy button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == pasteButton){
 			System.out.println("paste was clicked.");
 			buttonPressed="Paste button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == redoButton){
 			System.out.println("redo was clicked.");
 			buttonPressed="Redo button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == undoButton){
 			System.out.println("undo was clicked.");
 			buttonPressed="Undos button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == thicknessButton){
 			System.out.println("highlight was clicked.");
 			buttonPressed="Thickness button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == wordsButton){
 			System.out.println("letter was clicked.");
 			buttonPressed="Words button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
+			//currently this looks like a bold button KM
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == playButton){
 			System.out.println("play was clicked.");
 			buttonPressed="Play button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 		else if(source == newFile){
 			System.out.println("file was clicked.");
 			buttonPressed="New File button";
-			setWarningMsg(buttonPressed);
+			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 			}
 //		else if(source == revTriangle){
 //			System.out.println("reverse triangle was clicked.");
 //			buttonPressed="Reversebutton";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == triangle){
 //			System.out.println("triangle was clicked.");
 //			buttonPressed="Triangle button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == circle){
 //			System.out.println("circle was clicked.");
 //			buttonPressed="Circle button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == lineUp){
 //			System.out.println("line up was clicked.");
 //			buttonPressed="Line up button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == lineRight){
 //			System.out.println("line right was clicked.");
 //			buttonPressed="line right button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == squares){
 //			System.out.println("squares was clicked.");
 //			buttonPressed="Squares button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == lineLeft){
 //			System.out.println("line left was clicked.");
 //			buttonPressed="line left button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == makeBigger){
 //			System.out.println("make bigger was clicked.");
 //			buttonPressed="make bigger button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 //		else if(source == makeSmaller){
 //			System.out.println("make small was clicked.");
 //			buttonPressed="make small button";
-//			setWarningMsg(buttonPressed);
+//			setPopup(buttonPressed);
 //			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 //			}
 		}
@@ -423,19 +436,58 @@ public class DrawWindow extends JComponent implements ActionListener{
 	 * @author of comments Ioanna Deni
 	 * @param text message to be displayed
 	 */
-	public static void setWarningMsg(String text){
+	public static void setPopup(String text){
 		
 		//This gets the defaults of the location and path of events of the pop up window 
 	    Toolkit.getDefaultToolkit().beep();
 	    
 	    //This allow the instructions displayed to be equal to our parameter 
-	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
+	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.INFORMATION_MESSAGE);
 	    
 	    //This sets the title of the window
-	    JDialog dialog = optionPane.createDialog("Warning!");
+	    JDialog dialog = optionPane.createDialog("Information About The Button You Pressed!");
 	    
 	    //Sets the whole pop up window visible
 	    dialog.setAlwaysOnTop(true);
 	    dialog.setVisible(true);
 	}
+
+	/**
+	 * based off of KM's GUITetrisController class. takes input from the user; the input it receives is from the keys
+	 * Specifically shift. It should allow a double input of Shift and the mouse key
+	 * @author mccab
+	 *
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyEvent = e.getKeyCode();
+		System.out.println(keyEvent);
+		switch (keyEvent) {
+		//I want to have a shift to trigger entering the select mode
+		//eventually up or down
+		case 16: //16 is the keyCode for the 'shift' keys
+			frame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			break;
+		default:
+			System.out
+					.println("KEY RELEASED: "
+							+ e.getKeyCode()
+							+ " : "
+							+ e.getKeyChar()
+							+ "\n Error: Input not recognized.");
+		}
+	//	refreshDisplay();		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	} 
 }
