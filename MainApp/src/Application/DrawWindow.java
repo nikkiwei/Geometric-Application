@@ -40,22 +40,23 @@ import javax.swing.JOptionPane;
  *
  */
 
-public class DrawWindow extends JComponent implements ActionListener, KeyListener{
+public class DrawWindow extends JComponent implements ActionListener{
+	//,KeyListener{
 	//Since it is a frame it extends JComponents and has general listeners
 	//that apply to the windows functionality
-	
+
 	//Instance of the database - TO BE EDITTED
 	private DB db = new DB();
 	DecimalFormat df = new DecimalFormat("###.###");
-	
-	
+
+
 	//Frame for the application that is divided in 5 parts
 	protected JFrame frame; 
-	
-	
-	
+
+
+
 	//PART 1: THE TOP PANEL - MENUBAR
-	
+
 	//This menu hosts the different tabs like "File" "Edit" and "Help"
 	private final JMenuBar menuBar = new JMenuBar(); 
 	//Drop-down options in the menu bar 
@@ -75,11 +76,11 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 	private final JMenuItem mntmMouseMode = new JMenuItem("Mouse Mode");
 	private final JMenuItem mntmSystem = new JMenuItem("System");
 	private final JMenuItem mntmContactUs = new JMenuItem("Contact us");
-	
-	
-	
+
+
+
 	//PART 2: THE SECOND TOP PANEL - SHORTCUTS BUTTONS
-	
+
 	//This toolBar will host the buttons on the top of the window under the menuBar
 	private final JToolBar toolBar = new JToolBar();	
 	// The different buttons added have temporary names and no functionality 
@@ -94,48 +95,48 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 	private final JButton newFile = new JButton("");
 	private final JButton playButton = new JButton("");
 	private final JButton saveButton = new JButton("");
-	
-	
-	
+
+
+
 	//PART 3: MIDDLE CANVAS AREA
-	
+
 	//This is temporary the name of the canvas object
 	private DrawLineAndPoint canvasGUI = new DrawLineAndPoint(db);
-	
-	
-	
-//	//PART 4: LEFT PANEL - SIDE BUTTONS 
-//	
-//	//This second toolBar hosts the side buttons of the window
-//	private final JToolBar toolBar_1 = new JToolBar();
-//	// The different buttons added have temporary names and no functionality 
-//	// *THEY ARE EXAMPLES*
-//	private final JButton revTriangle = new JButton("");
-//	private final JButton triangle = new JButton("");
-//	private final JButton squares = new JButton("");
-//	private final JButton circle = new JButton("");
-//	private final JButton lineRight = new JButton("");
-//	private final JButton lineUp = new JButton("");
-//	private final JButton lineLeft = new JButton("");
-//	private final JButton makeBigger = new JButton("");
-//	private final JButton makeSmaller = new JButton("");
-	
-	
-	
+
+
+
+	//	//PART 4: LEFT PANEL - SIDE BUTTONS 
+	//	
+	//	//This second toolBar hosts the side buttons of the window
+	//	private final JToolBar toolBar_1 = new JToolBar();
+	//	// The different buttons added have temporary names and no functionality 
+	//	// *THEY ARE EXAMPLES*
+	//	private final JButton revTriangle = new JButton("");
+	//	private final JButton triangle = new JButton("");
+	//	private final JButton squares = new JButton("");
+	//	private final JButton circle = new JButton("");
+	//	private final JButton lineRight = new JButton("");
+	//	private final JButton lineUp = new JButton("");
+	//	private final JButton lineLeft = new JButton("");
+	//	private final JButton makeBigger = new JButton("");
+	//	private final JButton makeSmaller = new JButton("");
+
+
+
 	//PART 5: BOTTOM LABEL - CANVAS TAB
-	
+
 	//This label is at the bottom of the window and exist because we aim to be able to work in 
 	//multiple canvases at the same time like excel and tabs
 	private final JLabel bottomLabel = new JLabel("Canvas 1");
-	
-	
-	
+
+
+
 	// THE FOLLOWING COMMENTED LINES ARE IMPORTANT
 	// **DO NOT DELETE**
 	// They are used in window builder as coordinates to make the presentation 
 	// If deleted the window will not be generated - but they remain the same so 
 	// if copy pasted they should work
-		
+
 	/**
 	 * @wbp.nonvisual location=64,179
 	 */
@@ -157,9 +158,9 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
-			
+
 		});
 	}
 
@@ -175,25 +176,26 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 	 * Initialize the contents of the frame.
 	 */
 	protected void initialize() {
-		//Adds KeyListener to the canvas KM; may need MouseListener, MouseMotionListener
-		addKeyListener(this);
+		//		//Adds KeyListener to the canvas KM; may need MouseListener, MouseMotionListener
+		//		setFocusable(true);
+		//		addKeyListener(this);
 		//Creates the frame for the application and sets its size and 
 		//closing procedure
 		frame = new JFrame();
 		//Set cursor
 		frame.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		
+
 		frame.setBounds(100, 100, 873, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+
 		//adds the different JComponents in the frame
 		frame.setJMenuBar(menuBar);
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		frame.getContentPane().add(canvasGUI, BorderLayout.CENTER);
 		frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
-//		frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+		//		frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
 
-		
+
 		//adds the buttons in the top menuBar   
 		menuBar.add(mnMenu);
 		mnMenu.add(mntmNewFile);
@@ -214,7 +216,7 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 		mnHelp.setForeground(SystemColor.menuText);
 		mnSettings.setForeground(SystemColor.menuText);
 		mnEdit.setForeground(SystemColor.menuText);
-		
+
 		// adds the buttons to the toolBar at the top of the window under the menuBar
 		toolBar.add(newFile);
 		toolBar.add(saveButton);
@@ -249,47 +251,47 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 		wordsButton.addActionListener(this);
 		playButton.addActionListener(this);
 		saveButton.addActionListener(this);
-		
-		
-//		// adds the buttons to the secondary toolBar at the side of the window under the menuBar
-//		toolBar_1.add(triangle);
-//		toolBar_1.add(squares);
-//		toolBar_1.add(revTriangle);
-//		toolBar_1.add(circle);
-//		toolBar_1.add(lineUp);
-//		toolBar_1.add(lineRight);
-//		toolBar_1.add(lineLeft);
-//		toolBar_1.add(makeBigger);
-//		toolBar_1.add(makeSmaller);
-//		// This allows the toolBar to be vertical instead of horizontal
-//		toolBar_1.setOrientation(SwingConstants.VERTICAL);
-//		// These buttons have no displayed text only an icon provided by eclipse - see readme for more info
-//		triangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortUp.png")));
-//		revTriangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
-//		squares.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/control/skin/caspian/pattern-transparent.png")));
-//		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
-//		circle.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeLeaf.gif")));
-//		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
-//		lineUp.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/expanded.gif")));
-//		lineLeft.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed.gif")));
-//		makeBigger.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/maximize.gif")));
-//		makeSmaller.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/iconify-pressed.gif")));
-//		// and the buttons listeners - TO BE EDITED
-//		triangle.addActionListener(this);
-//		revTriangle.addActionListener(this);
-//		squares.addActionListener(this);
-//		circle.addActionListener(this);
-//		lineRight.addActionListener(this);
-//		lineUp.addActionListener(this);
-//		lineLeft.addActionListener(this);
-//		makeBigger.addActionListener(this);
-//		makeSmaller.addActionListener(this);
-		
+
+
+		//		// adds the buttons to the secondary toolBar at the side of the window under the menuBar
+		//		toolBar_1.add(triangle);
+		//		toolBar_1.add(squares);
+		//		toolBar_1.add(revTriangle);
+		//		toolBar_1.add(circle);
+		//		toolBar_1.add(lineUp);
+		//		toolBar_1.add(lineRight);
+		//		toolBar_1.add(lineLeft);
+		//		toolBar_1.add(makeBigger);
+		//		toolBar_1.add(makeSmaller);
+		//		// This allows the toolBar to be vertical instead of horizontal
+		//		toolBar_1.setOrientation(SwingConstants.VERTICAL);
+		//		// These buttons have no displayed text only an icon provided by eclipse - see readme for more info
+		//		triangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortUp.png")));
+		//		revTriangle.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+		//		squares.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/control/skin/caspian/pattern-transparent.png")));
+		//		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
+		//		circle.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeLeaf.gif")));
+		//		lineRight.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
+		//		lineUp.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/expanded.gif")));
+		//		lineLeft.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed.gif")));
+		//		makeBigger.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/maximize.gif")));
+		//		makeSmaller.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/iconify-pressed.gif")));
+		//		// and the buttons listeners - TO BE EDITED
+		//		triangle.addActionListener(this);
+		//		revTriangle.addActionListener(this);
+		//		squares.addActionListener(this);
+		//		circle.addActionListener(this);
+		//		lineRight.addActionListener(this);
+		//		lineUp.addActionListener(this);
+		//		lineLeft.addActionListener(this);
+		//		makeBigger.addActionListener(this);
+		//		makeSmaller.addActionListener(this);
+
 		// We set the bottom label to be more user friendly 
 		bottomLabel.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		bottomLabel.setForeground(UIManager.getColor("EditorPane.selectionBackground"));
-		
-		}
+
+	}
 
 	/**
 	 * This method has been generated for the distribution of the listeners of the buttons.
@@ -302,13 +304,13 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		
+
 		//Finds the source - the button that has been clicked
 		Object source = event.getSource();
-		
+
 		//Text message in the popped window
 		String buttonPressed;
-		
+
 		//**THIS IS AN EXAMPLE**
 		// the code for now will identify the buttons clicked and write on the console the name + "was clicked."
 		if(source == saveButton){
@@ -320,112 +322,112 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 			buttonPressed="Cut button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == copyButton){
 			System.out.println("copy was clicked.");
 			buttonPressed="Copy button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == pasteButton){
 			System.out.println("paste was clicked.");
 			buttonPressed="Paste button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == redoButton){
 			System.out.println("redo was clicked.");
 			buttonPressed="Redo button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == undoButton){
 			System.out.println("undo was clicked.");
 			buttonPressed="Undos button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == thicknessButton){
 			System.out.println("highlight was clicked.");
 			buttonPressed="Thickness button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == wordsButton){
 			System.out.println("letter was clicked.");
 			buttonPressed="Words button";
 			setPopup(buttonPressed);
 			//currently this looks like a bold button KM
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == playButton){
 			System.out.println("play was clicked.");
 			buttonPressed="Play button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
+		}
 		else if(source == newFile){
 			System.out.println("file was clicked.");
 			buttonPressed="New File button";
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-			}
-//		else if(source == revTriangle){
-//			System.out.println("reverse triangle was clicked.");
-//			buttonPressed="Reversebutton";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == triangle){
-//			System.out.println("triangle was clicked.");
-//			buttonPressed="Triangle button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == circle){
-//			System.out.println("circle was clicked.");
-//			buttonPressed="Circle button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == lineUp){
-//			System.out.println("line up was clicked.");
-//			buttonPressed="Line up button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == lineRight){
-//			System.out.println("line right was clicked.");
-//			buttonPressed="line right button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == squares){
-//			System.out.println("squares was clicked.");
-//			buttonPressed="Squares button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == lineLeft){
-//			System.out.println("line left was clicked.");
-//			buttonPressed="line left button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == makeBigger){
-//			System.out.println("make bigger was clicked.");
-//			buttonPressed="make bigger button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
-//		else if(source == makeSmaller){
-//			System.out.println("make small was clicked.");
-//			buttonPressed="make small button";
-//			setPopup(buttonPressed);
-//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
-//			}
 		}
-	
+		//		else if(source == revTriangle){
+		//			System.out.println("reverse triangle was clicked.");
+		//			buttonPressed="Reversebutton";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == triangle){
+		//			System.out.println("triangle was clicked.");
+		//			buttonPressed="Triangle button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == circle){
+		//			System.out.println("circle was clicked.");
+		//			buttonPressed="Circle button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == lineUp){
+		//			System.out.println("line up was clicked.");
+		//			buttonPressed="Line up button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == lineRight){
+		//			System.out.println("line right was clicked.");
+		//			buttonPressed="line right button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == squares){
+		//			System.out.println("squares was clicked.");
+		//			buttonPressed="Squares button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == lineLeft){
+		//			System.out.println("line left was clicked.");
+		//			buttonPressed="line left button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == makeBigger){
+		//			System.out.println("make bigger was clicked.");
+		//			buttonPressed="make bigger button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+		//		else if(source == makeSmaller){
+		//			System.out.println("make small was clicked.");
+		//			buttonPressed="make small button";
+		//			setPopup(buttonPressed);
+		//			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		//			}
+	}
+
 	/**
 	 * This method allows the function of a button.
 	 * It pops up a new window in the middle of the screen with a warning message and an option to click okay.
@@ -437,57 +439,20 @@ public class DrawWindow extends JComponent implements ActionListener, KeyListene
 	 * @param text message to be displayed
 	 */
 	public static void setPopup(String text){
-		
+
 		//This gets the defaults of the location and path of events of the pop up window 
-	    Toolkit.getDefaultToolkit().beep();
-	    
-	    //This allow the instructions displayed to be equal to our parameter 
-	    JOptionPane optionPane = new JOptionPane(text,JOptionPane.INFORMATION_MESSAGE);
-	    
-	    //This sets the title of the window
-	    JDialog dialog = optionPane.createDialog("Information About The Button You Pressed!");
-	    
-	    //Sets the whole pop up window visible
-	    dialog.setAlwaysOnTop(true);
-	    dialog.setVisible(true);
+		Toolkit.getDefaultToolkit().beep();
+
+		//This allow the instructions displayed to be equal to our parameter 
+		JOptionPane optionPane = new JOptionPane(text,JOptionPane.INFORMATION_MESSAGE);
+
+		//This sets the title of the window
+		JDialog dialog = optionPane.createDialog("Information About The Button You Pressed!");
+
+		//Sets the whole pop up window visible
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
 	}
 
-	/**
-	 * based off of KM's GUITetrisController class. takes input from the user; the input it receives is from the keys
-	 * Specifically shift. It should allow a double input of Shift and the mouse key
-	 * @author mccab
-	 *
-	 */
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int keyEvent = e.getKeyCode();
-		System.out.println(keyEvent);
-		switch (keyEvent) {
-		//I want to have a shift to trigger entering the select mode
-		//eventually up or down
-		case 16: //16 is the keyCode for the 'shift' keys
-			frame.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			break;
-		default:
-			System.out
-					.println("KEY RELEASED: "
-							+ e.getKeyCode()
-							+ " : "
-							+ e.getKeyChar()
-							+ "\n Error: Input not recognized.");
-		}
-	//	refreshDisplay();		
-	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	} 
 }
