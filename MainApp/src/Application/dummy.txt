@@ -11,6 +11,7 @@ From: Haoran Zhang
 From: Cecilia Yang
 From: Jiehui Luo
 From: Deanna T
+From: Eleanor Harris
 
 Steps:
 1. Write name here.
