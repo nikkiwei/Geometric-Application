@@ -33,6 +33,7 @@ public class DrawLineTest {
 			s.click(OS + "compileButton.PNG");
 			s.wait(OS + "proceedButton.PNG");
 			s.click(OS + "proceedButton.PNG");
+			
 		} catch(FindFailed f) {
 			f.printStackTrace();
 		}
