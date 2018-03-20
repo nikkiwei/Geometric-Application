@@ -5,6 +5,15 @@ import org.sikuli.script.Screen;
 import org.sikuli.script.Pattern; 
 import org.sikuli.script.Region;
 
+/**
+ * Basic test to draw a line. Currently only set up for a
+ * MacBook Air, because the final comparison depends on dimensions
+ * based on a screenshot.
+ * 
+ * @author Sage Mahannah
+ * @version 3/20/2018
+ *
+ */
 public class DrawLineTest {
 	
 	static Screen s = new Screen();
