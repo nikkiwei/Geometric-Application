@@ -8,7 +8,8 @@ import org.sikuli.script.Region;
 /**
  * Basic test to draw a line. Currently only set up for a
  * MacBook Air, because the final comparison depends on dimensions
- * based on a screenshot.
+ * based on a screenshot. Needs the Application package to be
+ * opening down.
  * 
  * @author Sage Mahannah
  * @version 3/20/2018
@@ -71,6 +72,7 @@ public class DrawLineTest {
 			//waiting for it to expand
 			s.wait(OS +"startWindowExpanded.PNG", 5);
 		} catch(FindFailed f) {
+			System.out.print("Something wrong happened with openning the application");
 			f.printStackTrace();
 		}
 	}
@@ -86,6 +88,7 @@ public class DrawLineTest {
 				s.click(OS + "proceedButton.PNG");
 			}
 		} catch(FindFailed f) {
+			System.out.print("Something went wrong in checking if an error message showed up.");
 			f.printStackTrace();
 		} 
 	}
@@ -104,6 +107,7 @@ public class DrawLineTest {
 			Region southEast = s.get(Region.SOUTH_EAST);
 			s.dragDrop(northWest, southEast); 
 		} catch(FindFailed f) {
+			System.out.print("Something went wrong in drawing a line.");
 			f.printStackTrace();
 		} 
 	}
