@@ -16,22 +16,32 @@ import org.sikuli.script.Region;
  */
 public class DrawLineTest {
 	
+	/** The computer's screen **/
 	static Screen s = new Screen();
+	/** The computer's operating system **/
 	static String OS;
 
+	
+	/**
+	 * Opens the application, draws a line, and compares it to
+	 * a test image.
+	 * @param args the argument to be passed in
+	 */
 	public static void main(String[] args) {
-		getOS();
-		openApplication();
-		drawLine();
-		compareLines();
+		DrawLineTest lineTest = new DrawLineTest();
+		lineTest.getOS();
+		lineTest.openApplication();
+		lineTest.drawLine();
+		lineTest.compareLines();
 	}
 	
 	/**
 	 * Determines the user's system operating system
 	 * Useful for a shorthand when finding file structures
 	 * Also useful because things look different on macs than on pcs
+	 * This method was created by Ivy O'Neal-Odom.
 	 */
-	public static void getOS() {
+	private void getOS() {
 		if(System.getProperty("os.name").contains("Windows")) {
 			OS = "SystemTestImages/windows/";
 		}else {
@@ -39,7 +49,13 @@ public class DrawLineTest {
 		}
 	}
 	
-	public static void openApplication() {
+	/**
+	 * Helper method to open the application. Expands the window to fill the screen.
+	 * Currently, customized to work for a Macbook Air. Unsure of use
+	 * on other computers.
+	 * Created by Sage Mahannah.
+	 */
+	private void openApplication() {
 		try {
 			//Opening the DrawWindow class
 			s.doubleClick(OS + "drawWindowClass.PNG");
@@ -50,6 +66,7 @@ public class DrawLineTest {
 			//Expanding the window
 			s.hover(OS + "expandButton.PNG");
 			Pattern expandButton = new Pattern (OS+"expandButtonHover.PNG");
+			s.wait(expandButton.similar((float).95), 3);
 			s.click(expandButton.similar((float) 0.9));
 			//waiting for it to expand
 			s.wait(OS +"startWindowExpanded.PNG", 5);
@@ -58,7 +75,12 @@ public class DrawLineTest {
 		}
 	}
 	
-	public static void proceedThroughError() {
+	/**
+	 * Helper method to get through any error messages
+	 * Eclipse might have. 
+	 * Created by Sage Mahannah.
+	 */
+	private void proceedThroughError() {
 		try {
 			if (s.exists(OS + "proceedButton.PNG", 5) != null) {
 				s.click(OS + "proceedButton.PNG");
@@ -68,28 +90,37 @@ public class DrawLineTest {
 		} 
 	}
 	
-	public static void drawLine() {
+	/**
+	 * Helper method to draw a line.
+	 * Draws a line from the center of the northwestern corner
+	 * to the center of the southeastern corner.
+	 * This should be changed to specific cordinates, as these
+	 * corners will vary on each device.
+	 * Created by Sage Mahannah.
+	 */
+	private void drawLine() {
 		try {
 			Region northWest = s.get(Region.NORTH_WEST);
 			Region southEast = s.get(Region.SOUTH_EAST);
-			s.hover(northWest);
-			s.drag(northWest);
-			s.hover(southEast);
-			s.dropAt(southEast);
+			s.dragDrop(northWest, southEast); 
 		} catch(FindFailed f) {
 			f.printStackTrace();
 		} 
 	}
 	
-	public static void compareLines() {
+	/**
+	 * Helper method to compare what is currently on the screen to
+	 * a test image of a diagonal line. Prints out if there was an
+	 * error. Currently an exact test.
+	 * Created by Sage Mahannah
+	 */
+	private void compareLines() {
 		Pattern diagonalLine = new Pattern (OS+"diagonalLine.PNG");
-		if (s.exists(diagonalLine.similar((float) 0.5)) != null) {
+		if (s.exists(diagonalLine.exact()) != null) {
 			System.out.print("It worked! There are no problems.");
 		}
 		else {
 			System.out.print("Oh no! Something went wrong...");
 		}
 	}
-	
-	
 }
