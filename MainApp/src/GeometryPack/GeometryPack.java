@@ -159,10 +159,13 @@ public class GeometryPack {
 				return Math.PI - angle;
 			return  Math.PI -angle;
 		}
-
-	}
-
-/**
+	
+import java.lang.Math;
+import java.awt.Point;
+import java.awt.geom.Line2D;
+import java.awt.Graphics;
+import javax.swing.JComponent;
+	/**
 * Replicate an angle given a point, line and angle
 * @param point
 * @param alpha
@@ -195,4 +198,8 @@ public class GeometryPack {
 		return point_C;
 
 		}
+
+
+	}
+
 
