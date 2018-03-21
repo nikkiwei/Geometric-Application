@@ -3,13 +3,14 @@ package SystemTest;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 import org.sikuli.script.Pattern; 
-import org.sikuli.script.Region;
+//import org.sikuli.script.Region;
+import org.sikuli.script.Location;
 
 /**
  * Basic test to draw a line. Currently only set up for a
  * MacBook Air, because the final comparison depends on dimensions
  * based on a screenshot. Needs the Application package to be
- * opening down.
+ * already opened up.
  * 
  * @author Sage Mahannah
  * @version 3/20/2018
@@ -103,9 +104,12 @@ public class DrawLineTest {
 	 */
 	private void drawLine() {
 		try {
-			Region northWest = s.get(Region.NORTH_WEST);
-			Region southEast = s.get(Region.SOUTH_EAST);
-			s.dragDrop(northWest, southEast); 
+			//version for quadrants
+			//Region northWest = s.get(Region.NORTH_WEST);
+			//Region southEast = s.get(Region.SOUTH_EAST);
+			//s.dragDrop(northWest, southEast); 
+			//version for specific coordinates
+			s.dragDrop(new Location (100,200), new Location (500,500));
 		} catch(FindFailed f) {
 			System.out.print("Something went wrong in drawing a line.");
 			f.printStackTrace();
@@ -119,7 +123,10 @@ public class DrawLineTest {
 	 * Created by Sage Mahannah
 	 */
 	private void compareLines() {
-		Pattern diagonalLine = new Pattern (OS+"diagonalLine.PNG");
+		//Version for quadrants
+		//Pattern diagonalLine = new Pattern (OS+"diagonalLine.PNG");
+		//Version for fixed coordinates
+		Pattern diagonalLine = new Pattern (OS+"diagonalLineFixedLocations.PNG");  
 		if (s.exists(diagonalLine.exact()) != null) {
 			System.out.print("It worked! There are no problems.");
 		}
