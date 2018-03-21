@@ -210,11 +210,12 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 	/**
 	 * When the mouse is just clicked, add a Point array of length 1 to the database for a single point.
 	 * added 3/6/18 Jaemarie Solyst
+	 * 
 	 * @param e mouse event passed in to record location of release
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		
 		// Create a point array of length 1 to save the point
 		Point[] pointArray = new Point[1];
 		pointArray[0] = new Point(e.getX(), e.getY());

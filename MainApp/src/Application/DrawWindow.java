@@ -2,6 +2,7 @@ package Application;
 
 //These imports have been initialized by Eclipse WindowBuilder 2018
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
@@ -24,6 +27,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -92,7 +97,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	private final JButton undoButton = new JButton("");
 	private final JButton thicknessButton = new JButton("");
 	private final JButton wordsButton = new JButton("");
-	private final JButton newFile = new JButton("");
+	private final JButton newFileButton = new JButton("");
 	private final JButton playButton = new JButton("");
 	private final JButton saveButton = new JButton("");
 
@@ -218,7 +223,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		mnEdit.setForeground(SystemColor.menuText);
 
 		// adds the buttons to the toolBar at the top of the window under the menuBar
-		toolBar.add(newFile);
+		toolBar.add(newFileButton);
 		toolBar.add(saveButton);
 		toolBar.add(cutButton);
 		toolBar.add(copyButton);
@@ -229,18 +234,18 @@ public class DrawWindow extends JComponent implements ActionListener{
 		toolBar.add(wordsButton);
 		toolBar.add(playButton);
 		// These buttons have no displayed text only an icon provided by eclipse - see readme for more info
-		newFile.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/file.gif")));
-		saveButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
-		cutButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Cut_16x16_JFX.png")));
-		copyButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
-		pasteButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
-		redoButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Redo_16x16_JFX.png")));
-		undoButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
-		thicknessButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/FontBackgroundColor_16x16_JFX.png")));
-		wordsButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
-		playButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaPlayDisabled.png")));		
+//		newFileButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/file.gif")));
+//		saveButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
+//		cutButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Cut_16x16_JFX.png")));
+//		copyButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
+//		pasteButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+//		redoButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Redo_16x16_JFX.png")));
+//		undoButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
+//		thicknessButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/FontBackgroundColor_16x16_JFX.png")));
+//		wordsButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
+//		playButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaPlayDisabled.png")));		
 		// and the buttons listeners - TO BE EDITED
-		newFile.addActionListener(this);
+		newFileButton.addActionListener(this);
 		saveButton.addActionListener(this);
 		cutButton.addActionListener(this);
 		copyButton.addActionListener(this);
@@ -290,6 +295,8 @@ public class DrawWindow extends JComponent implements ActionListener{
 		// We set the bottom label to be more user friendly 
 		bottomLabel.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		bottomLabel.setForeground(UIManager.getColor("EditorPane.selectionBackground"));
+		
+		initializeMouseListeners();
 
 	}
 
@@ -366,7 +373,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 			setPopup(buttonPressed);
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
 		}
-		else if(source == newFile){
+		else if(source == newFileButton){
 			System.out.println("file was clicked.");
 			buttonPressed="New File button";
 			setPopup(buttonPressed);
@@ -453,6 +460,218 @@ public class DrawWindow extends JComponent implements ActionListener{
 		dialog.setAlwaysOnTop(true);
 		dialog.setVisible(true);
 	}
-
-
+	
+	/**
+	 * This method adds listeners to the buttons that are then used to display a 
+	 * JLabel with the name of the button at the right hand side of the tool bar
+	 * every time the user enters the button.  The label goes away when the user
+	 * moves the mouse outside of the button.
+	 * 
+	 * @author Emilyann Nault
+	 * @version March 6, 2018
+	 */
+	public void initializeMouseListeners(){
+	
+		//For each button in the tool bar, a label is added that pops up when 
+		//the mouse enters a button and disappears when the mouse leaves the button 
+		newFileButton.addMouseListener(new MouseAdapter()
+	    {
+			JLabel newFileBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				newFileBLabel = new JLabel("New File");
+				toolBar.add(newFileBLabel);
+				newFileBLabel.setLocation(11*newFileButton.getWidth(), -11);
+				newFileBLabel.setSize(newFileBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				newFileBLabel.setBorder(border);
+				newFileBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		newFileBLabel.setVisible(false);
+	        }
+	    });
+		
+		saveButton.addMouseListener(new MouseAdapter()
+	    {
+			JLabel saveBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				saveBLabel = new JLabel("Save");
+				toolBar.add(saveBLabel);
+				saveBLabel.setLocation(11*saveButton.getWidth(), -11);
+				saveBLabel.setSize(saveBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				saveBLabel.setBorder(border);
+				saveBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		saveBLabel.setVisible(false);
+	        }
+	    });
+		
+		cutButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel cutBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				cutBLabel = new JLabel("Cut");
+				toolBar.add(cutBLabel);
+				cutBLabel.setLocation(11*cutButton.getWidth(), -11);
+				cutBLabel.setSize(cutBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				cutBLabel.setBorder(border);
+				cutBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		cutBLabel.setVisible(false);
+	        }
+	    });
+		
+		copyButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel copyBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				copyBLabel = new JLabel("Copy");
+				toolBar.add(copyBLabel);
+				copyBLabel.setLocation(11*copyButton.getWidth(), -11);
+				copyBLabel.setSize(copyBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				copyBLabel.setBorder(border);
+				copyBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		copyBLabel.setVisible(false);
+	        }
+	    });
+		
+		pasteButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel pasteBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				pasteBLabel = new JLabel("Paste");
+				toolBar.add(pasteBLabel);
+				pasteBLabel.setLocation(11*pasteButton.getWidth(), -11);
+				pasteBLabel.setSize(pasteBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				pasteBLabel.setBorder(border);
+				pasteBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		pasteBLabel.setVisible(false);
+	        }
+	    });
+		
+		redoButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel redoBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				redoBLabel = new JLabel("Redo");
+				toolBar.add(redoBLabel);
+				redoBLabel.setLocation(11*redoButton.getWidth(), -11);
+				redoBLabel.setSize(redoBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				redoBLabel.setBorder(border);
+				redoBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		redoBLabel.setVisible(false);
+	        }
+	    });
+		
+		undoButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel undoBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				undoBLabel = new JLabel("Undo");
+				toolBar.add(undoBLabel);
+				undoBLabel.setLocation(11*undoButton.getWidth(), -11);
+				undoBLabel.setSize(undoBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				undoBLabel.setBorder(border);
+				undoBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		undoBLabel.setVisible(false);
+	        }
+	    });
+		
+		thicknessButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel thicknessBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				thicknessBLabel = new JLabel("Thickness");
+				toolBar.add(thicknessBLabel);
+				thicknessBLabel.setLocation(11*thicknessButton.getWidth(), -11);
+				thicknessBLabel.setSize(thicknessBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				thicknessBLabel.setBorder(border);
+				thicknessBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		thicknessBLabel.setVisible(false);
+	        }
+	    });
+		
+		wordsButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel wordsBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				wordsBLabel = new JLabel("Text");
+				toolBar.add(wordsBLabel);
+				wordsBLabel.setLocation(11*wordsButton.getWidth(), -11);
+				wordsBLabel.setSize(wordsBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				wordsBLabel.setBorder(border);
+				wordsBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		wordsBLabel.setVisible(false);
+	        }
+	    });
+		
+		playButton.addMouseListener(new MouseAdapter()
+		{
+			JLabel playBLabel = null;
+	        public void mouseEntered(MouseEvent evt)
+	        {
+				playBLabel = new JLabel("Play");
+				toolBar.add(playBLabel);
+				playBLabel.setLocation(11*playButton.getWidth(), -11);
+				playBLabel.setSize(playBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				playBLabel.setBorder(border);
+				playBLabel.setForeground(Color.RED);
+				repaint();
+	        }
+	        public void mouseExited(MouseEvent evt)
+	        {
+	        		playBLabel.setVisible(false);
+	        }
+	    });
+	}
 }
