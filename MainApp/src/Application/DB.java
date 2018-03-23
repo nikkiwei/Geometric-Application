@@ -13,20 +13,20 @@ import java.util.List;
  *
  */
 class DB {
-	List<Point> db;
+	List<Point[]> db;
 	int size;
 
 	DB () {
-		db = new ArrayList<Point>(10);
+		db = new ArrayList<Point[]>(10);
 		size = 0;
 	}
 	
-	public void Add (Point p) {
+	public void Add (Point[] p) {
 		db.add(p);
 		size++;
 	}
 	
-	public Point Get (int i ) {
+	public Point[] Get (int i ) {
 		return db.get(i);
 	}
 	

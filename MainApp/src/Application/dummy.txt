@@ -4,3 +4,20 @@ From:Younghoo Cho;
 From Lou Conover
 From: Cordelia Jones;
 From: Sage Mahannah;
+From: Masha Lifshits
+From: Ye Won Hong;
+From: Juhi Shah;
+From: Haoran Zhang
+From: Cecilia Yang
+From: Jiehui Luo
+From: Deanna T
+From: Eleanor Harris
+
+Steps:
+1. Write name here.
+2. MainApp(right click)->Team->Commit...
+3. Save file.
+4. Drag class from Unstaged Changes to Staged Changes (if not already there)
+5. Add commit message (your name and quick description)
+6. Commit And Push...
+7. Pull to see if it works.
