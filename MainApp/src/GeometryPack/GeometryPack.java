@@ -2,9 +2,17 @@ package GeometryPack;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.lang.Math;
+import java.awt.Point;
+import java.awt.geom.Line2D;
+import java.awt.Graphics;
+import javax.swing.JComponent;
 
 public class GeometryPack {
 
+	public GeometryPack() {
+		
+	}
 	/**
 	 * The function takes a point with Cartesian coordinates and transforms them into the
 	 *  screen
@@ -158,13 +166,8 @@ public class GeometryPack {
 			if(dX>0&&dY>0)
 				return Math.PI - angle;
 			return  Math.PI -angle;
+			
 		}
-	
-import java.lang.Math;
-import java.awt.Point;
-import java.awt.geom.Line2D;
-import java.awt.Graphics;
-import javax.swing.JComponent;
 	/**
 * Replicate an angle given a point, line and angle
 * @param point
@@ -173,8 +176,9 @@ import javax.swing.JComponent;
 * @return line_AC
 * @author Nguyen Nguyen
 **/
-		private static Point angle_replication ( Point point_B, double alpha, Line2D line_ab ){
-
+		private static Point angle_replication ( Point point_B, double alpha, Line2D line_ab )
+		{
+		
 		// Calculate length of AB 
 		double dx = line_ab.getX1() - line_ab.getX2();
 		double dy = line_ab.getY1() - line_ab.getY2();
@@ -201,5 +205,3 @@ import javax.swing.JComponent;
 
 
 	}
-
-
