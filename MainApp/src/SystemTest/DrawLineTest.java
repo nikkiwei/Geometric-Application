@@ -67,9 +67,13 @@ public class DrawLineTest {
 			s.wait(OS + "startWindow.PNG", 10);
 			//Expanding the window
 			s.hover(OS + "expandButton.PNG");
-			Pattern expandButton = new Pattern (OS+"expandButtonHover.PNG");
-			s.wait(expandButton.similar((float).95), 3);
-			s.click(expandButton.similar((float) 0.9));
+			if(OS.contains("mac")) {
+				Pattern expandButton = new Pattern (OS+"expandButtonHover.PNG");
+				s.wait(expandButton.similar((float).95), 3);
+				s.click(expandButton.similar((float) 0.9));
+			}else {
+				s.click(OS + "expandButton.PNG");
+			}
 			//waiting for it to expand
 			s.wait(OS +"startWindowExpanded.PNG", 5);
 		} catch(FindFailed f) {
