@@ -1,4 +1,3 @@
-package Database;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -13,13 +12,13 @@ public class ObjectListTest {
 	private ObjectList list;
 	
 	// the geometric objects to test the methods on
-	private GeoObject point1;
-	private GeoObject point2;
-	private GeoObject line1;
-	private GeoObject line2;
-	private GeoObject polygon1;
-	private GeoObject polygon2;
-	private GeoObject nil;
+	private GeomObject point1;
+	private GeomObject point2;
+	private GeomObject line1;
+	private GeomObject line2;
+	private GeomObject polygon1;
+	private GeomObject polygon2;
+	private GeomObject nil;
 	
 	/**
 	 * Set up all the geometric objects

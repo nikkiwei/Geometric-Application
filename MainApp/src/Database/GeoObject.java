@@ -1,4 +1,3 @@
-package Database;
 /**
  * The GeoObject abstract class represents a geometric object that could be a point, a line, or a polygon
  * 
@@ -6,28 +5,19 @@ package Database;
  * @version 3/2/2018
  */
 
-public abstract class GeoObject {
+public abstract class GeomObject {
 	
 	// unique identifier of each object
 	protected int key;
 	
-	// the detectable range of each object
-	protected float range;
+	// differentiate between points, lines, and polygons
+	protected int type;
 	
 	/**
 	 * Constructor for the geometric object
 	 */
-	public GeoObject() {
-		range = 5;
+	public GeomObject() {
 	}
-	
-	/**
-	 * Check whether the object is within a certain range of a selected point
-	 * @param a, x coordinate passed in
-	 * @param b, y coordinate passed in
-	 * @return true if the object is within the range
-	 */
-	public abstract boolean isClose(float x, float y);
 	
 	/**
 	 * Get the key value
@@ -39,9 +29,17 @@ public abstract class GeoObject {
 	
 	/**
 	 * Update the key value
-	 * @param n the number passed in
+	 * @param k the number passed in
 	 */
-	public void setKey(int n) {
-		key = n;
+	public void setKey(int k) {
+		key = k;
+	}
+	
+	/**
+	 * Get the type of the object
+	 * @return object type, 1 for points, 2 for lines, 3 for polygons
+	 */
+	public int getType() {
+		return type;
 	}
 }
