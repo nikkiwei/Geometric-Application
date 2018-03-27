@@ -4,7 +4,7 @@ package Database;
  * Store all the methods that a linked list can implement
  * 
  * @author DB Team
- * @version 3/22/2018
+ * @version 3/26/2018
  */
 
 public class DataBase {
@@ -13,7 +13,7 @@ public class DataBase {
 	private int currentKey;
 
 	// the detectable range of each object
-	private double range;
+	private final static double range = 5;
 
 	// the list to store all the objects
 	private LinkedList<GeomObject> objectList;
@@ -28,9 +28,8 @@ public class DataBase {
 
 		// initiate the key and range
 		currentKey = 1;
-		range = 5;
 
-		// initiate the object list
+		// initiate the object list and the paintList
 		objectList = new LinkedList<GeomObject>();
 		paintList = new LinkedList<PaintableObject>();
 	}
@@ -44,10 +43,9 @@ public class DataBase {
 		// as long as the object is not null
 		if (object != null) {
 
-			// assign a key to the object and add it to the list, key = index
+			// assign a key to the object and add it to the list
 			object.setKey(currentKey);
 			objectList.add(objectList.size(), object);
-			System.out.println("current key:"+currentKey);
 			currentKey++;
 		}
 	}
@@ -67,11 +65,11 @@ public class DataBase {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Get the index of the object in the object list.
+	 * @return the index of the object
 	 */
 	private int getObjectIdx(int key) {
-
+		// Initialize the index
 		int idx = 0;
 
 		// loop through the object list
@@ -91,22 +89,25 @@ public class DataBase {
 	 * @return any object that is close enough to the selected point
 	 */
 	public GeomObject search (double x, double y) {
+		// x of the point on the left side
 		double left=0;
+		// x of the point on the right side
 		double right=0;
+		// y of the point on the top
 		double up=0;
+		/// y of the point at the bottom
 		double down=0;
+		// Initialize the points for points at different positions
 		Point leftP = new Point(0, 0);
 		Point rightP = new Point(0, 0);
 		Point upP = new Point(0, 0);
 		Point downP= new Point(0, 0);
 
-		//
+		// Go through every element in the object list
 		for (int i = 0; i < objectList.size(); i++) {
-			System.out.println("Searching");
-			//System.out.println(objectList.get(i).getType());
 			// if the object is a point
 			if (objectList.get(i).getType() == 1) {
-				System.out.println("Point");
+				// Get the point from the list
 				Point point = (Point) objectList.get(i);
 
 				// if x is within a certain range of a, and y is within a certain range of b
@@ -119,38 +120,14 @@ public class DataBase {
 
 			// if the object is a line
 			else if (objectList.get(i).getType() == 2) {
-				System.out.println("It's a line!");
+				// Get the line
 				Line line = (Line) objectList.get(i);
-				System.out.println("Running1");
-				System.out.println("Runnint type:"+line.getType());
-				System.out.println("getStart"+line.getStart());
-				System.out.println("getEnd"+line.getEnd());
-				//System.out.println("getStart"+line.getStart().getKey());
-				//System.out.println("getEnd"+line.getEnd().getKey());
-				Point start = (Point) objectList.get(getObjectIdx(line.getStart()));
-				System.out.println("getStart"+line.getStart());
-				System.out.println("getEnd"+line.getEnd());
-
-//				Point start = (Point) objectList.get(getObjectIdx(line.getStart().getKey()));
-//				System.out.println("getStart"+line.getStart().getKey());
-//				System.out.println("getEnd"+line.getEnd().getKey());
-				
-				System.out.println("Running2");
-				//System.out.println(start.getY());
-//				System.out.println(start.getX());
-				
-				//Point end = (Point) objectList.get(getObjectIdx(line.getEnd().getKey()));
+				// Get start point
+				Point start = (Point) objectList.get(getObjectIdx(line.getStart()));			
+				// Get end point
 				Point end = (Point) objectList.get(getObjectIdx(line.getEnd()));
-//				System.out.println(end.getY());
-//				System.out.println(end.getX());
-
-				// the cotangent value of the angle of the line with x-axis
-//				double angleCotangent = (Math.abs(start.getX() - end.getX())) // absolute value of x1-x2
-//						/(Math.abs(start.getY() - end.getY()) //absolute value of y1-y2
-//								);
-							
-
 				
+				// Match start and end points to the right position
 				if(start.getY()<=end.getY()) {
 					up=start.getY();
 					down=end.getY();
@@ -177,6 +154,7 @@ public class DataBase {
 					rightP=start;
 				}
 				
+				// Calculate the cotangent between the line and the x-axis for later use
 				double angleCotangent = (Math.abs(left - right)) // absolute value of x1-x2
 						/(Math.abs(down - up) //absolute value of y1-y2
 								);	
@@ -185,7 +163,6 @@ public class DataBase {
 				if (start.getY() == end.getY()) {
 					// if the distance between the selected point and the line is within the range
 					if (Math.abs(y - start.getY()) <= range) {
-						System.out.println("checking range");
 						if(x<=right+range && x>=left-range) {
 							return line;
 						}
@@ -194,101 +171,32 @@ public class DataBase {
 
 				// when the line is parallel to y-axis
 				else if (start.getX() == end.getX()) {
-					System.out.println("parallet to y");
-
 					// if the distance between the selected point and the line is within the range
 					if (Math.abs(x - start.getX()) <= range) {
-						System.out.println("First range");
 						if(y<=down+range && y>=up-range)
-							System.out.println("Another");
 							return line;
 					}
 				}
 				
+				// If the left point is lower than the right point
 				else if(leftP==downP) {
-					System.out.println("x left down");
 					// if the distance between the selected point and the line is within the range
 					if (Math.abs(right - angleCotangent*(y-up) // this is the x value
 							// of the intersection point with the line if we draw a line parallel to the x-axis at the selected point
 							- x) <= range) {
 						return line;
 					}
-//					else {
-//						System.out.println(Math.abs(right - angleCotangent*(y-up)- x)  );
-//					}
 				}
 				
+				// If the left point is higher than the right point
 				else if (leftP==upP) {
-					System.out.println("x left up");
 					// if the distance between the selected point and the line is within the range
 					if (Math.abs(right - angleCotangent*(y-up) // this is the x value
 							// of the intersection point with the line if we draw a line parallel to the x-axis at the selected point
 							-left-(right-x)) <= range) {
-						//- (x-left)
 						return line;
 					}
-					else {
-						System.out.println(Math.abs(right - angleCotangent*(y-up) -left));
-						System.out.println("left"+left);
-						System.out.println("right"+right);
-						System.out.println("up"+up);
-						System.out.println("down"+down);
-						System.out.println("angleCotangent"+angleCotangent);
-						System.out.println("product"+angleCotangent*(y-up));
-					}
 				}
-
-//				// when start point is lower than the end point
-//				else if (start.getY() > end.getY()) {
-//
-//					// the selected point's y coordinate has to be between the y coordinates of start and end points
-//					if (y <= end.getY() + range && y >= start.getY() - range) {
-//
-//						// when the start point is on the left of the end point
-//						//if (start.getX() < end.getX()) {
-//
-//							// if the distance between the selected point and the line is within the range
-//							if (Math.abs(right - angleCotangent*(y-down) // this is the x value
-//									// of the intersection point with the line if we draw a line parallel to the x-axis at the selected point
-//									- x) <= range) {
-//								return line;
-//							}
-//						//}
-//
-////						// when the start point is on the right of the end point
-////						// if the distance between the selected point and the line is within the range
-////						else if (Math.abs(end.getX() + angleCotangent*(end.getY() - start.getY()) // this is the x value
-////								// of the intersection point with the line if we draw a line parallel to the x-axis at the selected point
-////								- x) <= range) {
-////							return line;
-////						}
-//					}
-//				}
-//
-//				// when the start point is higher than the end point
-//				// the selected point's y coordinate has to be between the y coordinates of start and end points
-//				else if (y >= end.getY() + range && y <= start.getY() - range) {
-//
-//					// when the start point is on the left of the end point
-//					if (start.getX() < end.getX()) {
-//
-//						// if the distance between the selected point and the line is within the range
-//						if (Math.abs(start.getX() + angleCotangent*(start.getY() - end.getY()) // this is the x value
-//								// of the intersection point with the line if we draw a line parallel to the x-axis at the selected point
-//								- x) <= range) {
-//							return line;
-//						}
-//					}
-//
-//					// when the start point is on the right of the end point
-//					// if the distance between the selected point and the line is within the range
-//					else if (Math.abs(end.getX() + angleCotangent*(start.getY() - end.getY()) // this is the x value
-//							// of the intersection point with the line if we draw a line parallel to the x-axis at the selected point
-//							- x) <= range) {
-//						return line;
-//					}
-//
-//				}
 			}
 
 			// if the object is a polygon
@@ -319,8 +227,6 @@ public class DataBase {
 			}
 		}
 
-		//
-
 		return null;
 	}
 
@@ -345,8 +251,6 @@ public class DataBase {
 				Line line = (Line) objectList.get(i);
 				Point start = (Point) objectList.get(getObjectIdx(line.getStart()));
 				Point end = (Point) objectList.get(getObjectIdx(line.getEnd()));
-//				Point start = (Point) objectList.get(getObjectIdx(line.getStart().getKey()));
-//				Point end = (Point) objectList.get(getObjectIdx(line.getEnd().getKey()));
 				PaintableObject pLine = new PaintableLine(start.getX(), start.getY(), end.getX(), end.getY());
 				paintList.add(paintList.size(), pLine);
 			}
@@ -360,9 +264,22 @@ public class DataBase {
 		return paintList;
 	}
 
+	/**
+	 * Get the size of the object list.
+	 * @return size of the objectList
+	 */
 	public int size() {
 		return objectList.size();
 	}
+	
+	/**
+	 * A method that checks if the list is empty.
+	 * @return true if empty
+	 */
+	public boolean isEmpty() {
+		return objectList.isEmpty();
+	}
+	
 	public static void main(String[] args) {
 		DataBase list = new DataBase();
 //		//System.out.println(list.size());
@@ -387,9 +304,5 @@ public class DataBase {
 		GeomObject lineAcquired = list.search(60, 50/3);
 		System.out.println("lineAcquired.getType()"+lineAcquired.getType());
 		
-	}
-
-	public boolean isEmpty() {
-		return objectList.isEmpty();
 	}
 }
