@@ -279,30 +279,4 @@ public class DataBase {
 	public boolean isEmpty() {
 		return objectList.isEmpty();
 	}
-	
-	public static void main(String[] args) {
-		DataBase list = new DataBase();
-//		//System.out.println(list.size());
-//		GeomObject point5 = new Point(93, 55);
-//		GeomObject point6 = new Point(93, 21);
-//
-//		GeomObject line2 = new Line((Point)point5, (Point)point6);
-//		list.insert(point5);
-//		list.insert(point6);
-//		System.out.println("point5 key"+point5.getKey());
-//		System.out.println("point6 key"+point6.getKey());
-//		list.insert(line2);
-//		GeomObject lineAcquired = list.search(93, 30);
-//		System.out.println("lineAcquired.getType()"+lineAcquired.getType());
-		
-		GeomObject point7 = new Point(40, 10);
-		GeomObject point8 = new Point(70, 20);
-		list.insert(point7);
-		list.insert(point8);
-		GeomObject line3 = new Line((Point)point7, (Point)point8);
-		list.insert(line3);
-		GeomObject lineAcquired = list.search(60, 50/3);
-		System.out.println("lineAcquired.getType()"+lineAcquired.getType());
-		
-	}
 }
