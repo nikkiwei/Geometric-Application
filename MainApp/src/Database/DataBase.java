@@ -201,29 +201,25 @@ public class DataBase {
 
 			// if the object is a polygon
 			else if (objectList.get(i).getType() == 3) {
+				// A point representing the point at (x,y)
+				Point currentPoint = new Point(x,y);
+				// Get the polygon
+				Polygon polygon = (Polygon) objectList.get(i);
+				// Get the keys of the points in the polygon
+				LinkedList<Integer> keys= polygon.getPointsKeys();
 
-				// one side of the polygon
-				Line segment;
-
-				/*				// loop through the points array
-				for (int g = 0; g < points.length; g ++) {
-
-					// the index of the next point in the array
-					int j = g + 1;
-
-					// when we get to the last point in the array, the index of the next connecting point is the first one
-					if (g == points.length - 1) {
-						j = 0;
-					}
-
-					// each side of the polygon
-					segment = new Line(points[g], points[j]);
-
-					// check whether the selected point is close enough to each side of the polygon
-					if (segment.isClose(a, b)) {
-						return true;
-					}
-				}*/
+				
+				// a linked list containing the vertices of the polygon
+				LinkedList<Point> points = new LinkedList<Point>();
+				// add the points to the linked list based on the keys
+				for(int k=0; k<keys.size();k++) {
+					points.add(points.size(), (Point) objectList.get(getObjectIdx(keys.get(k))));
+				}
+				
+				// Test if the point is in the polygon
+				if(polygon.isInside(points, points.size(), currentPoint)) {
+					return polygon;
+				}
 			}
 		}
 
@@ -279,4 +275,99 @@ public class DataBase {
 	public boolean isEmpty() {
 		return objectList.isEmpty();
 	}
+	
+	public static void main(String[] args) {
+		DataBase list = new DataBase();
+//		//System.out.println(list.size());
+//		GeomObject point5 = new Point(93, 55);
+//		GeomObject point6 = new Point(93, 21);
+//
+//		GeomObject line2 = new Line((Point)point5, (Point)point6);
+//		list.insert(point5);
+//		list.insert(point6);
+//		System.out.println("point5 key"+point5.getKey());
+//		System.out.println("point6 key"+point6.getKey());
+//		list.insert(line2);
+//		GeomObject lineAcquired = list.search(93, 30);
+//		System.out.println("lineAcquired.getType()"+lineAcquired.getType());
+		
+		
+		
+		
+		//Point[] points=new Point[5];
+		
+		
+		
+		
+//		LinkedList<Point> points = new LinkedList<Point>();
+//		GeomObject point9=new Point(10,90);
+//		GeomObject point10=new Point(25,50);
+//		GeomObject point11=new Point(30,88);
+//		GeomObject point12=new Point(40,150);
+//		GeomObject point13=new Point(20,150);
+////		points[0]=(Point) point9;
+////		points[1]=(Point) point10;
+////		points[2]=(Point) point11;
+////		points[3]=(Point) point12;
+////		points[4]=(Point) point13;
+//		
+//		points.add(points.size(),(Point)point9);
+//		points.add(points.size(),(Point)point10);
+//		points.add(points.size(),(Point)point11);
+//		points.add(points.size(),(Point)point12);
+//		points.add(points.size(),(Point)point13);
+//		
+////		GeomObject point7 = new Point(40, 10);
+////		GeomObject point8 = new Point(70, 20);
+////		list.insert(point7);
+////		list.insert(point8);
+////		GeomObject line3 = new Line((Point)point7, (Point)point8);
+////		list.insert(line3);
+////		GeomObject lineAcquired = list.search(60, 50/3);
+//		//GeomObject polygon1=new Polygon(points);
+//		
+//		list.insert(point9);
+//		//System.out.println(points[0].getKey() );
+//		list.insert(point10);
+//		list.insert(point11);
+//		list.insert(point12);
+//		list.insert(point13);
+//		
+//		GeomObject polygon1=new Polygon(points);
+//		list.insert(polygon1);
+//		//GeomObject searched = list.search(10,91);
+//		GeomObject searched = list.search(30,100);
+//		System.out.println("searched.getType()"+searched.getType());
+		
+		LinkedList<Point> points = new LinkedList<Point>();
+		GeomObject point9=new Point(100, 100);
+		GeomObject point10=new Point(50, 150);
+		GeomObject point11=new Point(150, 150);
+		
+		points.add(points.size(),(Point)point9);
+		points.add(points.size(),(Point)point10);
+		points.add(points.size(),(Point)point11);
+		
+//		GeomObject point7 = new Point(40, 10);
+//		GeomObject point8 = new Point(70, 20);
+//		list.insert(point7);
+//		list.insert(point8);
+//		GeomObject line3 = new Line((Point)point7, (Point)point8);
+//		list.insert(line3);
+//		GeomObject lineAcquired = list.search(60, 50/3);
+		//GeomObject polygon1=new Polygon(points);
+		
+		list.insert(point9);
+		//System.out.println(points[0].getKey() );
+		list.insert(point10);
+		list.insert(point11);
+		
+		GeomObject polygon1=new Polygon(points);
+		list.insert(polygon1);
+		//GeomObject searched = list.search(10,91);
+		GeomObject searched = list.search(100,125);
+		System.out.println("searched.getType()"+searched.getType());
+		
+	}
+	
 }
