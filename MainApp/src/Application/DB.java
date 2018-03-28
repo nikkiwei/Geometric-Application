@@ -13,24 +13,105 @@ import java.util.List;
  *
  */
 class DB {
+	
 	List<Point[]> db;
 	int size;
-
+	
+	/**
+	* Database constructor that creates an ArrayList to store arrays of point objects.
+	*/
 	DB () {
 		db = new ArrayList<Point[]>(10);
 		size = 0;
 	}
 	
+	/**
+	 * Written 3/25/18 by Jaemarie Solyst
+	 * Alternative constructor for an already existing DB
+	 * @param shapeList
+	 * @param size
+	 */
+	public DB (ArrayList<Point[]> shapeList, int size) {
+		db = shapeList;
+		this.size = size;
+	}
+	
+	/**
+	* Add method that adds a new array of points to the db (database) ArrayList.
+	* @param p is an array of points that symbolizes a particular geometry object
+	*/
 	public void Add (Point[] p) {
 		db.add(p);
 		size++;
 	}
 	
+	/**
+	* Getter method that returns the array of points at a specified index in the db (database) ArrayList.
+	* @param i is the index
+	* @return the value/array of points at the given index in the  db (database) ArrayList
+	*/
 	public Point[] Get (int i ) {
 		return db.get(i);
 	}
 	
+	/**
+	* Getter method that returns the size/length of the db (database) ArrayList.
+	* @return size of the db (database) ArrayList
+	*/
 	public int Size () {
 		return size;
 	}
+	
+	/**
+	 * written 3/13/18 by Jaemarie Solyst
+	 * @param i takes in index of shape array to be deleted
+	 * @return the shape array that was deleted
+	 */
+	public Point[] delete(int i) {
+		
+		//make sure that the int is not out of bounds
+		if (i < size && i >= 0) {
+			//Get a clone to return
+			Point[] deletedShape = db.get(i).clone();
+			
+			//Remove the shapeArray from the db and return the clone
+			db.remove(i);
+			
+			//Decrement the size
+			size--;
+			return deletedShape;
+		}
+		return null;
+	}
+	
+	/**
+	 * Written 3/25/18 by Jaemarie Solyst
+	 * Get a clone of the shapeList
+	 * @return clone of array
+	 */
+	public ArrayList<Point[]> getShapeList(){
+		ArrayList<Point[]> cloneDB = new ArrayList<Point[]>();
+		
+		//Go through length of array and copy each into the new clone
+		for (int i = 0; i < size; i++) {
+			cloneDB.add(db.get(i).clone());
+		}
+		//return the clone
+		return cloneDB;
+	}
+	
+	/**
+	 * ADDED BY IOANNA DENI 3/21/2018
+	 * Getter method that returns the most recently added array of points added to the db (database) ArrayList
+	 * @return the most recently added array of points added to the db (database) ArrayList
+	 */
+		public Point[] returnPoint () {
+			
+			if (size!=0){
+				return db.get(size-1);
+			}
+			else{
+				return null;
+			}
+		}
 }
