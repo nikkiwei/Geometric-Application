@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * This class is build to contain all the necessary components 
@@ -96,6 +97,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	private final JButton playButton = new JButton("");
 	private final JButton saveButton = new JButton("");
 	private final JButton lineModeButton = new JButton("");
+	private final JButton midpointButton = new JButton("");
 	private final JButton angleButton = new JButton("");	
 
 
@@ -176,13 +178,24 @@ public class DrawWindow extends JComponent implements ActionListener{
 		frame.setBounds(100, 100, 873, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		//Added by EMILYANN NAULT March 28,2018
+		//JPanels for the rulers
+		JPanel xRuler = new JPanel();
+		JPanel yRuler = new JPanel();
+				
 		// Adds the different JComponents in the frame
 		frame.setJMenuBar(menuBar);
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		frame.getContentPane().add(canvasGUI, BorderLayout.CENTER);
-		frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
-		//frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+		frame.getContentPane().add(xRuler, BorderLayout.SOUTH);
+		frame.getContentPane().add(yRuler, BorderLayout.WEST);
 
+		//UPDATE: Bottom label eliminated for now to make room for ruler. May add back in later
+		//(Emilyann Nault)
+				
+		//frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
+		//frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+			
 
 		// Adds the buttons in the top menuBar   
 		menuBar.add(mnMenu);
@@ -217,6 +230,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		toolBar.add(wordsButton);
 		toolBar.add(playButton);
 		toolBar.add(lineModeButton);
+		toolBar.add(midpointButton);
 		toolBar.add(angleButton);
 		// These buttons have no displayed text, only an icon is provided by eclipse - see readme for more info
 		newFileButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/file.gif")));
@@ -244,6 +258,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		playButton.addActionListener(this);
 		saveButton.addActionListener(this);
 		lineModeButton.addActionListener(this);
+		midpointButton.addActionListener(this);
 		angleButton.addActionListener(this);
 
 		//POSSIBLE BUTTONS TO USE LATER THAT WERE PREVIOUSLY IN A LEFT SIDE TOOLBAR SECTION
@@ -384,7 +399,11 @@ public class DrawWindow extends JComponent implements ActionListener{
 			// Calls a method to switch in or out of line mode
 			canvasGUI.switchMode("line");
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		}	
+		else if(source == midpointButton){
+			System.out.println("midpoint button was clicked.");
 		}
+		
 		else if (source == angleButton){
 			System.out.println("angle was clicked.");
 			// Gets user's desired angle for their new line
@@ -743,6 +762,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 				playBLabel.setVisible(false);
 			}
 		});
+		
 		lineModeButton.addMouseListener(new MouseAdapter()
 		{
 			// Creates JLabel for the line mode button
@@ -763,6 +783,29 @@ public class DrawWindow extends JComponent implements ActionListener{
 			public void mouseExited(MouseEvent evt)
 			{
 				lineModeBLabel.setVisible(false);
+			}
+		});
+
+		midpointButton.addMouseListener(new MouseAdapter()
+		{
+			// Creates JLabel for the angle button
+			JLabel midpointBLabel = null;
+			public void mouseEntered(MouseEvent evt)
+			{
+				// Sets JLabel text, location, size, border, color and adds it to the tool bar
+				midpointBLabel = new JLabel("Find Midpoint");
+				toolBar.add(midpointBLabel);
+				midpointBLabel.setLocation(11*playButton.getWidth(), -11);
+				midpointBLabel.setSize(midpointBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				midpointBLabel.setBorder(border);
+				midpointBLabel.setForeground(Color.RED);
+				repaint();
+			}
+			// Hides the JLabel for the button when user no longer has the mouse over it
+			public void mouseExited(MouseEvent evt)
+			{
+				midpointBLabel.setVisible(false);
 			}
 		});
 

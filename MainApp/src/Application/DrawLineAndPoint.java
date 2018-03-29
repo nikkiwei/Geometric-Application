@@ -15,6 +15,7 @@ import javax.swing.JPanel;
  * @contributor Ioanna Deni
  * @contributor Sneha Kanaujia
  * @contributor Kiera McCabe
+ * @contributor Emilyann Nault
  * 
  * March 8, KM added DecimalFormat, coordinate getters, length arithmetic 
  * 
@@ -329,6 +330,10 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 			released = true;
 			repaint();
 		}
+//		else if(modeArray[CIRCLE_MODE]) {
+//			drawCircle();
+//			repaint();
+//		}
 	}
 
 	/**
@@ -365,5 +370,5 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 	public void canvasRepaint(){
 		repaint();
 	}
-
+	
 }
