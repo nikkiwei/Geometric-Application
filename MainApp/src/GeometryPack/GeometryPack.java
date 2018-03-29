@@ -50,8 +50,7 @@ public class GeometryPack {
 	{
 		return Math.asin(Math.abs(height/hypotenuse));
 	}
-
-
+	
 	/**
 	 * Calculates height of the triangle
 	 * @param a coordinates of point a
