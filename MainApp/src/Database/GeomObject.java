@@ -1,5 +1,7 @@
 package Database;
 
+import java.awt.Color;
+
 /**
  * The GeoObject abstract class represents a geometric object that could be a point, a line, or a polygon
  * 
@@ -14,6 +16,8 @@ public abstract class GeomObject {
 	
 	// differentiate between points, lines, and polygons
 	protected int type;
+	
+	protected Color color;
 	
 	/**
 	 * Constructor for the geometric object
@@ -43,5 +47,12 @@ public abstract class GeomObject {
 	 */
 	public int getType() {
 		return type;
+	}
+	
+	public void setColor(Color color) {
+		this.color=color;
+	}
+	public Color getColor() {
+		return color;
 	}
 }
