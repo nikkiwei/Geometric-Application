@@ -19,7 +19,7 @@ public class DataBase {
 	private LinkedList<GeomObject> objectList;
 
 	// the list to store all paintable objects
-	private LinkedList<PaintableObject> paintList;
+	//private LinkedList<PaintableObject> paintList;
 
 	/**
 	 * Constructor for the data base class
@@ -226,39 +226,39 @@ public class DataBase {
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return a list of paintable objects
-	 */
-	public LinkedList<PaintableObject> paintList() {
-
-		// loop through the object list
-		for (int i = 0; i < objectList.size(); i++) {
-
-			// if the object is a point
-			if (objectList.get(i).getType() == 1) {
-				Point point = (Point) objectList.get(i);
-				PaintableObject pPoint = new PaintablePoint(point.getX(), point.getY());
-				paintList.add(paintList.size(), pPoint);
-			}
-
-			// if the object is a line
-			else if (objectList.get(i).getType() == 2) {
-				Line line = (Line) objectList.get(i);
-				Point start = (Point) objectList.get(getObjectIdx(line.getStart()));
-				Point end = (Point) objectList.get(getObjectIdx(line.getEnd()));
-				PaintableObject pLine = new PaintableLine(start.getX(), start.getY(), end.getX(), end.getY());
-				paintList.add(paintList.size(), pLine);
-			}
-
-			// if the object is a polygon
-			else if (objectList.get(i).getType() == 3) {
-				PaintableObject polygon = new PaintablePolygon();
-				paintList.add(paintList.size(), polygon);
-			}
-		}
-		return paintList;
-	}
+//	/**
+//	 * 
+//	 * @return a list of paintable objects
+//	 */
+//	public LinkedList<PaintableObject> paintList() {
+//
+//		// loop through the object list
+//		for (int i = 0; i < objectList.size(); i++) {
+//
+//			// if the object is a point
+//			if (objectList.get(i).getType() == 1) {
+//				Point point = (Point) objectList.get(i);
+//				PaintableObject pPoint = new PaintablePoint(point.getX(), point.getY());
+//				paintList.add(paintList.size(), pPoint);
+//			}
+//
+//			// if the object is a line
+//			else if (objectList.get(i).getType() == 2) {
+//				Line line = (Line) objectList.get(i);
+//				Point start = (Point) objectList.get(getObjectIdx(line.getStart()));
+//				Point end = (Point) objectList.get(getObjectIdx(line.getEnd()));
+//				PaintableObject pLine = new PaintableLine(start.getX(), start.getY(), end.getX(), end.getY());
+//				paintList.add(paintList.size(), pLine);
+//			}
+//
+//			// if the object is a polygon
+//			else if (objectList.get(i).getType() == 3) {
+//				PaintableObject polygon = new PaintablePolygon();
+//				paintList.add(paintList.size(), polygon);
+//			}
+//		}
+//		return paintList;
+//	}
 
 	/**
 	 * Get the size of the object list.
