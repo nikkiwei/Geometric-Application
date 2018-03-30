@@ -236,18 +236,18 @@ public class DrawWindow extends JComponent implements ActionListener{
 		toolBar.add(angleButton);
 		toolBar.add(midpointButton);
 		// These buttons have no displayed text, only an icon is provided by eclipse - see readme for more info
-		newFileButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\newFile.png"));
-		saveButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\save.png"));
-		cutButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\cut.png"));
-		copyButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\copy.png"));
-		pasteButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\paste.png"));
-		redoButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\redo.png"));
-		undoButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\undo.png"));
-		thicknessButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\highlight.png"));
-		wordsButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\bold.png"));
-		playButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\circle.png"));		
-		lineModeButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\linewhite.png"));
-		angleButton.setIcon(new ImageIcon("C:\\Users\\ionde\\Documents\\2017FallSemester\\Java\\GeometryApplication\\MainApp\\anglewhite.png"));
+		newFileButton.setIcon(new ImageIcon("newFile.png"));
+		saveButton.setIcon(new ImageIcon("save.png"));
+		cutButton.setIcon(new ImageIcon("cut.png"));
+		copyButton.setIcon(new ImageIcon("copy.png"));
+		pasteButton.setIcon(new ImageIcon("paste.png"));
+		redoButton.setIcon(new ImageIcon("redo.png"));
+		undoButton.setIcon(new ImageIcon("undo.png"));
+		thicknessButton.setIcon(new ImageIcon("highlight.png"));
+		wordsButton.setIcon(new ImageIcon("bold.png"));
+		playButton.setIcon(new ImageIcon("circle.png"));		
+		lineModeButton.setIcon(new ImageIcon("linewhite.png"));
+		angleButton.setIcon(new ImageIcon("anglewhite.png"));
 		// Adds action listeners to the buttons
 		newFileButton.addActionListener(this);
 		saveButton.addActionListener(this);
