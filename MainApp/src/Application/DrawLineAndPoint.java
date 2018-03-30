@@ -73,6 +73,8 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 	//These two instances allow the storing of the database
 	//added 3/5/2018 by Ioanna Deni
 	private DB database;
+	
+	private Zoom zoom;
 
 	//Stack for undo and redo
 	private Stack<DB> dbStack = new Stack<DB>();
@@ -93,6 +95,8 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 		//Allows the parameter to match the instance object in the class
 		//added 3/5/2018 by Ioanna Deni
 		this.database = database;
+		
+		zoom = new Zoom();
 	}
 
 	/**
@@ -160,34 +164,9 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 			if (drag==true){
 				g.drawLine(xPress, yPress, xRelease, yRelease);
 			}
-
-			//Added by Jaemarie Solyst
-			//for all the point arrays (that will be drawn into shapes) saved in data base
-			for (int i=0; i<database.Size(); i++){
-				Point[] shapeArray = database.Get(i); 
-
-				// POINT: length of the array is 1
-				if (shapeArray.length == 1) {
-
-					//Saves the point from the array
-					Point p =  shapeArray[0];
-					//Draws ovals at the point's location
-					g.fillOval(p.x - (int)(POINT_SIZE/2), p.y - (int)(POINT_SIZE/2), POINT_SIZE, POINT_SIZE);
-				}
-
-				// LINE: length of the array is 2
-				else if (shapeArray.length == 2 ) {
-
-					//Saves the two line end points from the array
-					Point p1 = shapeArray[0];
-					Point p2 = shapeArray[1];
-
-					//Draws the line with two ovals on the end points
-					g.fillOval(p1.x - (int)(ENDPOINT_SIZE/2), p1.y - (int)(ENDPOINT_SIZE/2), ENDPOINT_SIZE, ENDPOINT_SIZE);
-					g.fillOval(p2.x - (int)(ENDPOINT_SIZE/2), p2.y - (int)(ENDPOINT_SIZE/2), ENDPOINT_SIZE, ENDPOINT_SIZE);
-					g.drawLine(p1.x, p1.y, p2.x, p2.y);
-				}
-			}
+			
+			zoom.paint(g2, database, ENDPOINT_SIZE);
+			
 		}
 	}
 
