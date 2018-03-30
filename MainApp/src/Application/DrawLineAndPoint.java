@@ -263,27 +263,7 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 		database.Add(pointArray);
 		repaint();
 	}
-
-	/**
-	 * Method for drawing the circle; would like to modify it some more
-	 * Written 3/15/18 by KM
-	 * @param g
-	 */
-	private void drawCircle(Graphics g) {
-		g.drawOval(xPress, yPress, (int)(Math.sqrt(Math.abs(xDifference2 + yDifference2))), (int)(Math.sqrt(Math.abs(xDifference2 + yDifference2))));
-		System.out.println("The radius of the circle is " + diameter);
-	}
-	/**
-	 * Written 3/15/18 by KM
-	 * Method for drawing the circle; would like to modify it some more
-	 * Pushed 3/30
-	 * @param g
-	 */
-	private void drawLine (Graphics g) {
-		g.drawLine(xPress, yPress, xRelease, yRelease);
-		System.out.println("The length of the line is " + diameter);
-
-	}
+	
 	/**
 	 * Written 3/13/18 by Jaemarie Solyst
 	 * This will be called by buttons.

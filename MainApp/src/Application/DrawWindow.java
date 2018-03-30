@@ -234,7 +234,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		toolBar.add(playButton);
 		toolBar.add(lineModeButton);
 		toolBar.add(angleButton);
-		toolBar.add(midpointButton);
+		//toolBar.add(midpointButton);
 		// These buttons have no displayed text, only an icon is provided by eclipse - see readme for more info
 		newFileButton.setIcon(new ImageIcon("newFile.png"));
 		saveButton.setIcon(new ImageIcon("save.png"));
