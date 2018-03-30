@@ -1,7 +1,9 @@
 package Application;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -144,7 +146,11 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 		//method modified by demo provided by Louis Conover 
 		//added 3/5/2018 by Ioanna Deni
 		super.paint(g);
-
+		//Anti-aliasing code added by KM  
+		Graphics2D g2 = (Graphics2D) g;
+		 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		      RenderingHints.VALUE_ANTIALIAS_ON);
+		  
 		//Checks if released boolean is true
 		//added 3/6/18 by Jaemarie Solyst
 		if (released==true) {
@@ -258,6 +264,26 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 		repaint();
 	}
 
+	/**
+	 * Method for drawing the circle; would like to modify it some more
+	 * Written 3/15/18 by KM
+	 * @param g
+	 */
+	private void drawCircle(Graphics g) {
+		g.drawOval(xPress, yPress, (int)(Math.sqrt(Math.abs(xDifference2 + yDifference2))), (int)(Math.sqrt(Math.abs(xDifference2 + yDifference2))));
+		System.out.println("The radius of the circle is " + diameter);
+	}
+	/**
+	 * Written 3/15/18 by KM
+	 * Method for drawing the circle; would like to modify it some more
+	 * Pushed 3/30
+	 * @param g
+	 */
+	private void drawLine (Graphics g) {
+		g.drawLine(xPress, yPress, xRelease, yRelease);
+		System.out.println("The length of the line is " + diameter);
+
+	}
 	/**
 	 * Written 3/13/18 by Jaemarie Solyst
 	 * This will be called by buttons.
