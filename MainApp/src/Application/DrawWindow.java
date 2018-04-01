@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * This class is build to contain all the necessary components 
@@ -96,6 +97,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 	private final JButton playButton = new JButton("");
 	private final JButton saveButton = new JButton("");
 	private final JButton lineModeButton = new JButton("");
+	private final JButton midpointButton = new JButton("");
 	private final JButton angleButton = new JButton("");	
 
 
@@ -141,7 +143,10 @@ public class DrawWindow extends JComponent implements ActionListener{
 
 	/**
 	 * @wbp.nonvisual location=64,179
+	 */
+	/**
 	 * This is the main function that runs and launches the application.
+	 *
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -176,13 +181,24 @@ public class DrawWindow extends JComponent implements ActionListener{
 		frame.setBounds(100, 100, 873, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		//Added by EMILYANN NAULT March 28,2018
+		//JPanels for the rulers
+		JPanel xRuler = new JPanel();
+		JPanel yRuler = new JPanel();
+				
 		// Adds the different JComponents in the frame
 		frame.setJMenuBar(menuBar);
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 		frame.getContentPane().add(canvasGUI, BorderLayout.CENTER);
-		frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
-		//frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+		frame.getContentPane().add(xRuler, BorderLayout.SOUTH);
+		frame.getContentPane().add(yRuler, BorderLayout.WEST);
 
+		//UPDATE: Bottom label eliminated for now to make room for ruler. May add back in later
+		//(Emilyann Nault)
+				
+		//frame.getContentPane().add(bottomLabel, BorderLayout.SOUTH);
+		//frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+			
 
 		// Adds the buttons in the top menuBar   
 		menuBar.add(mnMenu);
@@ -218,19 +234,20 @@ public class DrawWindow extends JComponent implements ActionListener{
 		toolBar.add(playButton);
 		toolBar.add(lineModeButton);
 		toolBar.add(angleButton);
+		//toolBar.add(midpointButton);
 		// These buttons have no displayed text, only an icon is provided by eclipse - see readme for more info
-		newFileButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/file.gif")));
-		saveButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
-		cutButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Cut_16x16_JFX.png")));
-		copyButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
-		pasteButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
-		redoButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Redo_16x16_JFX.png")));
-		undoButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
-		thicknessButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/FontBackgroundColor_16x16_JFX.png")));
-		wordsButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
-		playButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaPlayDisabled.png")));		
-		lineModeButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/web/skin/DrawHorizontalLine_16x16_JFX.png")));
-		angleButton.setIcon(new ImageIcon(DrawWindow.class.getResource("/com/sun/javafx/scene/control/skin/modena/dialog-more-details.png")));
+		newFileButton.setIcon(new ImageIcon("newFile.png"));
+		saveButton.setIcon(new ImageIcon("save.png"));
+		cutButton.setIcon(new ImageIcon("cut.png"));
+		copyButton.setIcon(new ImageIcon("copy.png"));
+		pasteButton.setIcon(new ImageIcon("paste.png"));
+		redoButton.setIcon(new ImageIcon("redo.png"));
+		undoButton.setIcon(new ImageIcon("undo.png"));
+		thicknessButton.setIcon(new ImageIcon("highlight.png"));
+		wordsButton.setIcon(new ImageIcon("bold.png"));
+		playButton.setIcon(new ImageIcon("circle.png"));		
+		lineModeButton.setIcon(new ImageIcon("linewhite.png"));
+		angleButton.setIcon(new ImageIcon("anglewhite.png"));
 		// Adds action listeners to the buttons
 		newFileButton.addActionListener(this);
 		saveButton.addActionListener(this);
@@ -244,6 +261,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 		playButton.addActionListener(this);
 		saveButton.addActionListener(this);
 		lineModeButton.addActionListener(this);
+		midpointButton.addActionListener(this);
 		angleButton.addActionListener(this);
 
 		//POSSIBLE BUTTONS TO USE LATER THAT WERE PREVIOUSLY IN A LEFT SIDE TOOLBAR SECTION
@@ -384,7 +402,11 @@ public class DrawWindow extends JComponent implements ActionListener{
 			// Calls a method to switch in or out of line mode
 			canvasGUI.switchMode("line");
 			//JOptionPane.showInputDialog(buttonPressed+"was pressed");
+		}	
+		else if(source == midpointButton){
+			System.out.println("midpoint button was clicked.");
 		}
+		
 		else if (source == angleButton){
 			System.out.println("angle was clicked.");
 			// Gets user's desired angle for their new line
@@ -399,11 +421,11 @@ public class DrawWindow extends JComponent implements ActionListener{
 			// Checks there's a value in lineArray to avoid null pointer exception.
 			if (lineArray!=null && lineArray.length>1){
 				// Gets the length of the last line made
-				length = geom.lineLength( lineArray[0], lineArray[1]);
+				length = (int)geom.lineLength( lineArray[0], lineArray[1]);
 				
 				/* Creates a new point extending from the end of the last line at the same length as 
 				 * the last line and made at angle given by the user. */
-				Point newPoint = geom.lineAtAngle(lineArray[1], length, angleValue);
+				Point newPoint = (Point)geom.lineAtAngle(lineArray[1], length, angleValue);
 				
 				// Creates new line at from the end of the last line to the newly calculated point location.
 				Point[] addition = new Point[2];
@@ -743,6 +765,7 @@ public class DrawWindow extends JComponent implements ActionListener{
 				playBLabel.setVisible(false);
 			}
 		});
+		
 		lineModeButton.addMouseListener(new MouseAdapter()
 		{
 			// Creates JLabel for the line mode button
@@ -763,6 +786,29 @@ public class DrawWindow extends JComponent implements ActionListener{
 			public void mouseExited(MouseEvent evt)
 			{
 				lineModeBLabel.setVisible(false);
+			}
+		});
+
+		midpointButton.addMouseListener(new MouseAdapter()
+		{
+			// Creates JLabel for the angle button
+			JLabel midpointBLabel = null;
+			public void mouseEntered(MouseEvent evt)
+			{
+				// Sets JLabel text, location, size, border, color and adds it to the tool bar
+				midpointBLabel = new JLabel("Find Midpoint");
+				toolBar.add(midpointBLabel);
+				midpointBLabel.setLocation(11*playButton.getWidth(), -11);
+				midpointBLabel.setSize(midpointBLabel.getWidth() + 11,50);
+				Border border = LineBorder.createGrayLineBorder();
+				midpointBLabel.setBorder(border);
+				midpointBLabel.setForeground(Color.RED);
+				repaint();
+			}
+			// Hides the JLabel for the button when user no longer has the mouse over it
+			public void mouseExited(MouseEvent evt)
+			{
+				midpointBLabel.setVisible(false);
 			}
 		});
 

@@ -1,7 +1,9 @@
 package Application;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
  * @contributor Ioanna Deni
  * @contributor Sneha Kanaujia
  * @contributor Kiera McCabe
+ * @contributor Emilyann Nault
  * 
  * March 8, KM added DecimalFormat, coordinate getters, length arithmetic 
  * 
@@ -143,7 +146,11 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 		//method modified by demo provided by Louis Conover 
 		//added 3/5/2018 by Ioanna Deni
 		super.paint(g);
-
+		//Anti-aliasing code added by KM  
+		Graphics2D g2 = (Graphics2D) g;
+		 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		      RenderingHints.VALUE_ANTIALIAS_ON);
+		  
 		//Checks if released boolean is true
 		//added 3/6/18 by Jaemarie Solyst
 		if (released==true) {
@@ -256,7 +263,7 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 		database.Add(pointArray);
 		repaint();
 	}
-
+	
 	/**
 	 * Written 3/13/18 by Jaemarie Solyst
 	 * This will be called by buttons.
@@ -329,6 +336,10 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 			released = true;
 			repaint();
 		}
+//		else if(modeArray[CIRCLE_MODE]) {
+//			drawCircle();
+//			repaint();
+//		}
 	}
 
 	/**
@@ -365,5 +376,5 @@ public class DrawLineAndPoint extends JPanel implements MouseListener, MouseMoti
 	public void canvasRepaint(){
 		repaint();
 	}
-
+	
 }

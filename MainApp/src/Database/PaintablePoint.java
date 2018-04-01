@@ -17,7 +17,8 @@ public class PaintablePoint extends PaintableObject {
 
 	/**
 	 * Constructor for the point class
-	 * @param point the geometric point
+	 * @param a x coordinate of the point
+	 * @param b y coordinate of the point
 	 */
 	public PaintablePoint(Point point) {
 

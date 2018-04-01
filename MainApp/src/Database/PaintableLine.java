@@ -4,7 +4,7 @@ package Database;
  * A paintable line geometric object
  * 
  * @author DB Team
- * @version 4/1/2018
+ * @version 3/22/2018
  */
 
 public class PaintableLine extends PaintableObject {
@@ -17,8 +17,10 @@ public class PaintableLine extends PaintableObject {
 	
 	/**
 	 * Constructor for paintable line
-	 * @param start x starting point
-	 * @param end y ending point
+	 * @param a x coordinate of starting point
+	 * @param b y coordinate of starting point
+	 * @param x x coordinate of ending point
+	 * @param y y coordinate of ending point
 	 */
 	public PaintableLine(Point start, Point end) {
 		
