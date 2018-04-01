@@ -6,7 +6,7 @@ import java.awt.Color;
  * The GeoObject abstract class represents a geometric object that could be a point, a line, or a polygon
  * 
  * @author DB Team
- * @version 3/2/2018
+ * @version 4/1/2018
  */
 
 public abstract class GeomObject {
@@ -17,12 +17,17 @@ public abstract class GeomObject {
 	// differentiate between points, lines, and polygons
 	protected int type;
 	
+	// the selection state of the object
+	protected boolean isSelected;
+	
+	// the color of the object
 	protected Color color;
 	
 	/**
 	 * Constructor for the geometric object
 	 */
 	public GeomObject() {
+		isSelected = false;
 	}
 	
 	/**
@@ -49,10 +54,34 @@ public abstract class GeomObject {
 		return type;
 	}
 	
-	public void setColor(Color color) {
-		this.color=color;
-	}
+	/**
+	 * Get the color of the object
+	 * @return object color
+	 */
 	public Color getColor() {
 		return color;
+	}
+	
+	/**
+	 * Change object's color
+	 * @param newColor set color to the new color
+	 */
+	public void setColor(Color newColor) {
+		color = newColor;
+	}
+	
+	/**
+	 * Determine if the object is selected or not
+	 * @return true if the object is selected
+	 */
+	public boolean isSelected() {
+		return isSelected;
+	}
+	
+	/**
+	 * Select an object
+	 */
+	public void select() {
+		isSelected = true;
 	}
 }

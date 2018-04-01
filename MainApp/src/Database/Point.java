@@ -4,7 +4,7 @@ package Database;
  * A point geometric object.
  * 
  * @author DB Team
- * @version 3/2/2018
+ * @version 4/1/2018
  */
 
 public class Point extends GeomObject {
