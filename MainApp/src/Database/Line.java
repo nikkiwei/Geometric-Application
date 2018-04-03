@@ -4,11 +4,12 @@ package Database;
  * A line geometric object
  * 
  * @author DB Team
- * @version 4/1/2018
+ * @version 3/2/2018
  */
 
 public class Line extends GeomObject {
-	
+	private Point startP;
+	private Point endP;
 	// the key of the starting point of the line
 	private int start;
 	
@@ -23,10 +24,11 @@ public class Line extends GeomObject {
 	public Line(Point s, Point e) {
 
 		super();
-
+		startP =s;
+		endP =e;
 		// initiate the starting and ending points' keys
-		start = s.getKey();
-		end = e.getKey();
+		//start = s.getKey();
+		//end = e.getKey();
 		type = 2;
 	}
 	
@@ -35,7 +37,8 @@ public class Line extends GeomObject {
 	 * @return the start point
 	 */
 	public int getStart() {
-		return start;
+		return startP.getKey();
+		//return start;
 	}
 	
 	/**
@@ -43,7 +46,8 @@ public class Line extends GeomObject {
 	 * @return the end point
 	 */
 	public int getEnd() {
-		return end;
+		return endP.getKey();
+		//return end;
 	}
 	
 	/**
