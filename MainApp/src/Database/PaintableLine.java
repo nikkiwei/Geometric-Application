@@ -31,6 +31,8 @@ public class PaintableLine extends PaintableObject {
 		y1 = start.getY();
 		x2 = end.getX();
 		y2 = end.getY();
+		
+		type = 2;
 	}
 	
 	/**
