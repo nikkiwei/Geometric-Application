@@ -27,6 +27,8 @@ public class PaintablePoint extends PaintableObject {
 		// remember the coordinates of the point
 		x = point.getX();
 		y = point.getY();
+		
+		type=1;
 	}
 	
 	/**
