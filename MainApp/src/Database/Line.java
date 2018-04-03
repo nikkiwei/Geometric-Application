@@ -68,4 +68,3 @@ public class Line extends GeomObject {
 		end = e.getKey();
 	}
 }
-
